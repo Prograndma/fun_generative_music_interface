@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(16,50px); /* Adjust the number of columns as needed */
+    gap: 0px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+  }
+  
+  .cell {
+    width: 50px;
+    height: 20px;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .painted {
+    background-color: #000;
+    color:#fff;
+  }
+  
+  .cell:hover {
+    background-color: #000; /* Adjust the color as needed */
+  }
+  #row-1, #row-5, #row-9, #row-13{
+    border-left: 2px solid #000;
+  }
+  #row-16{
+    border-right: 2px solid #000;
+  }

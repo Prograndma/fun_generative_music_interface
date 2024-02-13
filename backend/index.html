@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Minimal Flask Example</title>
+</head>
+<body>
+    <p>
+        There is text here!!!
+    </p>
+    <br>
+    <button onclick="myFunction()">Click me!</button>
+    <br>
+    <p id="output"></p>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>    
+    async function myFunction(){
+        var output = document.getElementById("output"); 
+        const response = await axios.get('http://127.0.0.1:5000/')
+        output.innerHTML = "response";
+    }
+
+</script>
+</html>
