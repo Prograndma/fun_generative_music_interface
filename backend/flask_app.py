@@ -7,7 +7,7 @@ CORS(app)
 
 # Okay so here we're going to take a file probably and return a file, or maybe we could get the button information 
 # and construct the midi here, since that might be easier than passing around a midi file. 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def home():
   the_stuff = gonna_do_some_stuff()
   return f"Hello, cross-origin-world!, {the_stuff}"
