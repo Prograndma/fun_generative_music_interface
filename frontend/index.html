@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles.css"/>
     <title>App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 </head>
 <body>
     <div id="grid-container">
@@ -16,7 +17,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -28,7 +29,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -40,7 +41,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -55,7 +56,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -67,7 +68,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -79,7 +80,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -94,7 +95,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -106,7 +107,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -118,7 +119,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -133,7 +134,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -145,7 +146,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -157,7 +158,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -172,7 +173,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -184,7 +185,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -196,7 +197,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -211,7 +212,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -223,7 +224,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -235,7 +236,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -250,7 +251,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -262,7 +263,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -274,7 +275,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -289,7 +290,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -301,7 +302,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -313,7 +314,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -328,7 +329,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -340,7 +341,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -352,7 +353,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -367,7 +368,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -379,7 +380,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -391,7 +392,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -406,7 +407,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -418,7 +419,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -430,7 +431,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -445,7 +446,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -457,7 +458,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -469,7 +470,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -484,7 +485,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -496,7 +497,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -508,7 +509,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -523,7 +524,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -535,7 +536,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -547,7 +548,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -562,7 +563,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -574,7 +575,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -586,7 +587,7 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
@@ -601,7 +602,7 @@
             <div class="cell C#5" onclick="playNoteOnClick('C#5')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C5" onclick="playNoteOnClick('C5')"><div class=note-name>C</div></div>
             <div class="cell B4" onclick="playNoteOnClick('B4')"><div class=note-name>B</div></div>
-            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#4" onclick="playNoteOnClick('A#4')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A4" onclick="playNoteOnClick('A4')"><div class=note-name>A</div></div>
             <div class="cell G#4" onclick="playNoteOnClick('G#4')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G4" onclick="playNoteOnClick('G4')"><div class=note-name>G</div></div>
@@ -613,7 +614,7 @@
             <div class="cell C#4" onclick="playNoteOnClick('C#4')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C4" onclick="playNoteOnClick('C4')"><div class=note-name>C</div></div>
             <div class="cell B3" onclick="playNoteOnClick('B3')"><div class=note-name>B</div></div>
-            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#3" onclick="playNoteOnClick('A#3')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A3" onclick="playNoteOnClick('A3')"><div class=note-name>A</div></div>
             <div class="cell G#3" onclick="playNoteOnClick('G#3')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G3" onclick="playNoteOnClick('G3')"><div class=note-name>G</div></div>
@@ -625,16 +626,17 @@
             <div class="cell C#3" onclick="playNoteOnClick('C#3')"><div class=note-name>C#/D&#9837</div></div>
             <div class="cell C3" onclick="playNoteOnClick('C3')"><div class=note-name>C</div></div>
             <div class="cell B2" onclick="playNoteOnClick('B2')"><div class=note-name>B</div></div>
-            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/BA&#9837</div></div>
+            <div class="cell A#2" onclick="playNoteOnClick('A#2')"><div class=note-name>A#/B&#9837</div></div>
             <div class="cell A2" onclick="playNoteOnClick('A2')"><div class=note-name>A</div></div>
             <div class="cell G#2" onclick="playNoteOnClick('G#2')"><div class=note-name>G#/A&#9837</div></div>
             <div class="cell G2" onclick="playNoteOnClick('G2')"><div class=note-name>G</div></div>
         </div>
     </div>
     <button onclick="playMusic()"id="playButton">Play!</button>
-    <button onclick="showNoteNames()">Note Names On</button>
-    <button onclick="hideNoteNames()">Note Names Off</button>
+    <button onclick="toggleNoteNames()"id="noteToggle">Note Names On</button>
     <button onclick="clearGrid()">Clear</button>
+    <button onclick="sendGenerateRequest()">Generate!</button>
+
 
     <p>Tempo</p>
     <div id="slidecontainer">
