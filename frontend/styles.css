@@ -10,7 +10,6 @@
     user-select: none; /* Standard syntax */
 
   }
-  
   .cell {
     width: 50px;
     height: 20px;
@@ -25,13 +24,28 @@
     background-color: #000;
     color:#fff;
   }
-  
+  .painted.cell:hover {
+    background-color: #525252;
+    color:#fff;
+  }
   .cell:hover {
-    background-color: #000; /* Adjust the color as needed */
+    background-color: #aeaeae; /* Adjust the color as needed */
   }
   #row-1, #row-5, #row-9, #row-13{
     border-left: 2px solid #000;
   }
   #row-16{
     border-right: 2px solid #000;
+  }
+  .playing{
+    background-color: #97e6ac;
+    color:greenyellow;
+  }
+  .playing.painted{
+    background-color: green;
+  }
+
+  #slidecontainer{
+    display: flex;
+    flex-direction: row;
   }
