@@ -1,3 +1,10 @@
+### HOW TO USE THIS FILE
+### or more specifically, how to run it locally
+### pip install flask in an intelligent way. 
+### (in the terminal, in the backend directory)
+### flask --app flask_app.py run
+### that is it. 
+
 from flask import Flask
 from flask_cors import CORS
 
