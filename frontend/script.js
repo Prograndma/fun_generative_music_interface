@@ -102,5 +102,11 @@ document.addEventListener('DOMContentLoaded', function () {
       elements[i].style.display = 'inline';
     }
   }
+  function sendGenerateRequest() {
+      axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
+          console.log(response)
+          // do whatever you want if console is [object object] then stringify the response
+      })
+  }
   hideNoteNames();
 
