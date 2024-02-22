@@ -245,30 +245,7 @@ function toggleNoteNames(){
         showNoteNames();
         namesOn = false;
     }
-<<<<<<< HEAD
 }
-=======
-  }
-  function hideNoteNames() {
-    const elements = document.getElementsByClassName("note-name");
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].style.display = 'none';
-    }
-  }
-  function showNoteNames() {
-    const elements = document.getElementsByClassName("note-name");
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].style.display = 'inline';
-    }
-  }
-  function sendGenerateRequest() {
-      axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
-          console.log(response)
-          // do whatever you want if console is [object object] then stringify the response
-      })
-  }
-  hideNoteNames();
->>>>>>> 9d234a7a3ab62dd51627bbfa9fb00957ea8b8cc1
 
 function hideNoteNames(){
     const elements = document.getElementsByClassName("note-name");
@@ -296,3 +273,10 @@ function toggleNoteNames(){
         namesOn = true;
     }
 }   
+
+function sendGenerateRequest() {
+    axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
+        console.log(response)
+        // do whatever you want if console is [object object] then stringify the response
+    })
+}
