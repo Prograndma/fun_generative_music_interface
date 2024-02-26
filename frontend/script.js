@@ -84,72 +84,64 @@ const noteToInt = {
     'G2': 36,
 };
 
-
-
-//document.addEventListener('DOMContentLoaded', function () {
-    const gridContainer = document.getElementById('grid-container');
+const gridContainer = document.getElementById('grid-container');
   
-    // Variable to track painting or erasing
-    let isPainting = false;
-    let isErasing = false;
-  
-    // Add event listeners for painting and erasing
-    gridContainer.addEventListener('mousedown', function (event) {
-      if (event.button === 0) {
+// Variable to track painting or erasing
+let isPainting = false;
+let isErasing = false;
+
+// Add event listeners for painting and erasing
+gridContainer.addEventListener('mousedown', function (event) {
+    if (event.button === 0) {
         // Left mouse button - start painting
         isPainting = true;
         isErasing = false;
         paintCell(event);
-      } else if (event.button === 2) {
+    } else if (event.button === 2) {
         // Right mouse button - start erasing
         isPainting = false;
         isErasing = true;
         eraseCell(event);
-      }
-    });
+    }
+});
   
-    gridContainer.addEventListener('mousemove', function (event) {
-      if (isPainting) {
+gridContainer.addEventListener('mousemove', function (event) {
+    if (isPainting) {
         paintCell(event);
-      } else if (isErasing){
+    } else if (isErasing){
         eraseCell(event);
-      }
-    });
+    }
+});
   
-    gridContainer.addEventListener('mouseup', function () {
-      isPainting = false;
-      isErasing = false;
-    });
+gridContainer.addEventListener('mouseup', function () {
+    isPainting = false;
+    isErasing = false;
+});
   
-    /*gridContainer.addEventListener('mouseleave', function () {
-      isPainting = false;
-    });*/
-  
-    // Paint the cell
-    function paintCell(event) {
-      if (event.target.classList.contains('cell') && !event.target.classList.contains('painted')) {
+// Paint the cell
+function paintCell(event) {
+    if (event.target.classList.contains('cell') && !event.target.classList.contains('painted')) {
         // Add the painted class only if it's not already present
         event.target.classList.add('painted');
-      }else if (event.target.parentElement.classList.contains('cell') && !event.target.parentElement.classList.contains('painted')){
+    }else if (event.target.parentElement.classList.contains('cell') && !event.target.parentElement.classList.contains('painted')){
         event.target.parentElement.classList.add('painted');
-      }
     }
+}
   
-    // Erase the cell
-    function eraseCell(event) {
-      if (event.target.classList.contains('cell') && event.target.classList.contains('painted')) {
+// Erase the cell
+function eraseCell(event) {
+    if (event.target.classList.contains('cell') && event.target.classList.contains('painted')) {
         // Remove the painted class if it's present
         event.target.classList.remove('painted');
-      }else if (event.target.parentElement.classList.contains('cell') && event.target.parentElement.classList.contains('painted')){
+    }else if (event.target.parentElement.classList.contains('cell') && event.target.parentElement.classList.contains('painted')){
         event.target.parentElement.classList.remove('painted');
-      }
     }
+}
   
-    // Disable right-click context menu to improve the painting and erasing experience
-    gridContainer.addEventListener('contextmenu', function (event) {
-      event.preventDefault();
-    });
-//});
+// Disable right-click context menu to improve the painting and erasing experience
+gridContainer.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+});
 
 function addTagToChildren(parentElement, className) {
     const children = parentElement.children;  
@@ -321,7 +313,6 @@ function populateRow(input_info, row){
     }
 }
 
-
 function populateGrid(input){
     clearGrid();
     var rowNum = 16;
@@ -339,8 +330,7 @@ function populateGrid(input){
     //populate each row
     for (let i = 0; i < rowNum; i++) {
         populateRow(input[i] , rows[i]);
-    }    
-
+    }
 }
 
 var exampleMusic =[['C4', 'E4', 'G4', 'C5'],
@@ -360,11 +350,32 @@ var exampleMusic =[['C4', 'E4', 'G4', 'C5'],
 ['G3', 'B3', 'G4', 'F5'],
 ['C3', 'C4', 'G4', 'E5']]
 
-function getInfoFromGrid(){
+function readRow(row){
+    var outArray = [];
+    var children = row.children;
+    for (let i = 0; i < children.length; i++){
+        var child = children[i];
+        if(child.classList.contains('painted')){
+            outArray.push(intToNote[i]);
+        }
+    }
+    return outArray;
+}
 
+function getInfoFromGrid(){
+    var rowNum = 16;
+    var rows = getRows();
+    var outArray = [];
+    for (let i = 0; i < rowNum; i++) {
+        newRow = readRow(rows[i]);
+        outArray.push(newRow);
+    }
+    return outArray;
 }
 
 function sendGenerateRequest() {
+    //get contents of grid
+    var stuffToSend = getInfoFromGrid();
     axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
         console.log(response)
         // do whatever you want if console is [object object] then stringify the response
