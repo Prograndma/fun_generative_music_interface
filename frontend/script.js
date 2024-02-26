@@ -15,7 +15,7 @@ const intToNote = {
     7: 'C5',
     8: 'B4',
     9: 'A#4',
-    10: 'A$',
+    10: 'A4',
     11: 'G#4',
     12: 'G4',
     13: 'F#4',
@@ -44,7 +44,45 @@ const intToNote = {
     36: 'G2',
 };
 
-
+const noteToInt = {
+    'G5': 0,
+    'F#5': 1,
+    'F5': 2,
+    'E5': 3,
+    'D#5': 4,
+    'D5': 5,
+    'C#5': 6,
+    'C5': 7,
+    'B4': 8,
+    'A#4': 9,
+    'A4': 10,
+    'G#4': 11,
+    'G4': 12,
+    'F#4': 13,
+    'F4': 14,
+    'E4': 15,
+    'D#4': 16,
+    'D4': 17,
+    'C#4': 18,
+    'C4': 19,
+    'B3': 20,
+    'A#3': 21,
+    'A3': 22,
+    'G#3': 23,
+    'G3': 24,
+    'F#3': 25,
+    'F3': 26,
+    'E3': 27,
+    'D#3': 28,
+    'D3': 29,
+    'C#3': 30,
+    'C3': 31,
+    'B2': 32,
+    'A#2': 33,
+    'A2': 34,
+    'G#2': 35,
+    'G2': 36,
+};
 
 
 
@@ -273,6 +311,58 @@ function toggleNoteNames(){
         namesOn = true;
     }
 }   
+
+function populateRow(input_info, row){
+    const cells = row.children;
+    for (let i = 0; i < input_info.length; i++){
+        var note = input_info[i];
+        idx = noteToInt[note];
+        cells[idx].classList.add('painted');
+    }
+}
+
+
+function populateGrid(input){
+    clearGrid();
+    var rowNum = 16;
+    //trim input
+    if (input.length > rowNum) {
+        input = input.slice(0, rowNum);
+    }
+    if(input.length < rowNum){
+        extra = rowNum - input.length;
+        for (let i = 0; i < extra; i++) {
+            input.push([]);
+        }       
+    }
+    var rows = getRows();
+    //populate each row
+    for (let i = 0; i < rowNum; i++) {
+        populateRow(input[i] , rows[i]);
+    }    
+
+}
+
+var exampleMusic =[['C4', 'E4', 'G4', 'C5'],
+['B3', 'D4', 'G4'],
+['A3', 'C4', 'G4', 'A4'],
+['G3', 'D4', 'G4', 'B4'],
+['E3', 'E4', 'G4', 'C5'],
+['D3', 'F4', 'B4', 'D5'],
+['G#2', 'E4', 'B4', 'E5'],
+['A2', 'E4', 'A4', 'C5'],
+['A3', 'A4', 'C5', 'E5'],
+['B3', 'G4', 'D5', 'G5'],
+['G3', 'D4', 'B4', 'G5'],
+['C4', 'D4', 'G4', 'E5'],
+['E3', 'C4', 'G4', 'G5'],
+['D3', 'C4', 'A4', 'F5'],
+['G3', 'B3', 'G4', 'F5'],
+['C3', 'C4', 'G4', 'E5']]
+
+function getInfoFromGrid(){
+
+}
 
 function sendGenerateRequest() {
     axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
