@@ -30,6 +30,9 @@ body{
     align-items: center;
     justify-content: center;
 }
+#button-holder{
+    margin-left: 1rem;
+}
 #grid-container {
     display: grid;
     grid-template-columns: repeat(16,50px); /* Adjust the number of columns as needed */

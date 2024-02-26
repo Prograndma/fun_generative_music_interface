@@ -1,6 +1,6 @@
 //global variables
 var playMode = false;
-var tempo = 60;
+var tempo = 100;
 var namesOn = false;
 
 

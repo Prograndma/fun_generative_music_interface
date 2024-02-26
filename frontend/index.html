@@ -5,12 +5,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Estonia&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <title>Music Interface</title>
+    <title>Composer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 </head>
 <body>
     <div id = header>
-        <h1>Title</h1>
+        <h1>Compose With AI</h1>
     </div>
     <div id="roll-holder">
         <div id="grid-container">
@@ -643,11 +643,12 @@
             <button onclick="playMusic()"id="playButton">Play!</button>
             <button onclick="toggleNoteNames()"id="noteToggle">Note Names On</button>
             <button onclick="clearGrid()">Clear</button>
-            <button onclick="generateTypes('bigram')">Populate</button>
+            <button onclick="generateTypes('bigram')">Populate (more random)</button>
+            <button onclick="generateTypes('trigram')">Populate (more consistent)</button>
             <!--    <button onclick="sendGenerateRequest()">Generate!</button>-->        
             <p>Tempo</p>
             <div id="slidecontainer">
-                <p>30 </p><input type="range" min="30" max="180" value="60" class="slider" id="tempoSlider"onchange="getTempo()"><p> 180</p>
+                <p>30 </p><input type="range" min="30" max="180" value="100" class="slider" id="tempoSlider"onchange="getTempo()"><p> 180</p>
               </div>
         </div>
     </div>
@@ -715,7 +716,14 @@
                         new_token+=' ';
                     }
                     text += new_token;
-                    context.push(new_token);
+                    if(this.n>2){
+                        var parts = new_token.split(' ');
+                        for(let i = 0; i < parts.length; i++) {
+                            context.push(parts[i]);
+                        }
+                    }else{
+                        context.push(new_token);
+                    }
                     context = context.slice(-(this.n-1));
                     if (this.n == 1) {
                         context = [];
