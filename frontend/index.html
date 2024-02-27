@@ -647,9 +647,8 @@
             <div id="populate-buttons">
                 <h2>Populate Music</h2>
                 <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
-                <button class= "imgbutton" onclick="generateTypes('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" alt="buttonpng"/></button>
-
+                <button class= "imgbutton" onclick="generateTypes('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
             </div>
 
             <!--    <button onclick="sendGenerateRequest()">Generate!</button>-->        
@@ -705,7 +704,6 @@
                         return possibility.slice(context.length);
                     }
                 }
-                console.log(context);
             }
             random_text(token_count) {
                 var text = '';
@@ -716,15 +714,17 @@
                 var context = starting_context;
                 for (let i = 0; i < token_count; i++) {
                     var token = context.join('').trim();
-                    try{
-                        var new_token = this.random_token(token).trim();
-                    }catch(error){
-                        console.log('oh dear');
-                        break;
+                    var new_token = this.random_token(token);
+                    if (new_token===undefined){
+                        return text.trim();
                     }
+                    new_token = new_token.trim();
                     if (new_token == "<END>"){
                         return text.trim();
                     }
+                    if (new_token===undefined){
+                        return text.trim();
+                    }                    
                     if(new_token.charAt(new_token-1) != ' '){
                         new_token+=' ';
                     }
@@ -759,7 +759,11 @@
             var arrayStrings = output.split(' ');
             var outArray = [];
             for (let i = 0; i < arrayStrings.length; i++) {
-                var myArray = JSON.parse(arrayStrings[i].replaceAll("\'", '\"'));
+                try{
+                    var myArray = JSON.parse(arrayStrings[i].replaceAll("\'", '\"'));
+                }catch(exception){
+                    var myArray = [];
+                }
                 outArray.push(myArray);
             }
             populateGrid(outArray);
