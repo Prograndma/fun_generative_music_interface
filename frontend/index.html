@@ -651,7 +651,10 @@
                 <h2>Populate Music</h2>
                 <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="generateTypes('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateGrid(majorArpeggio)"><img src="img/happy.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateGrid(minorArpeggio)"><img src="img/sad.png" alt="buttonpng"/></button>
+
             </div>
 
             <!--    <button onclick="sendGenerateRequest()">Generate!</button>-->        
@@ -752,8 +755,7 @@
         var bigram_model = new NgramModel(2, bigramData);
         var trigram_model = new NgramModel(3, trigramData);
 
-        function generateTypes(model_to_use){
-           var output_types;
+        function generateSample(model_to_use){
             if (model_to_use == "bigram"){
                 output = bigram_model.random_text(16);
             }else{
