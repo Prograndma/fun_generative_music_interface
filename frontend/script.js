@@ -2,7 +2,7 @@
 var playMode = false;
 var tempo = 100;
 var namesOn = false;
-
+const pianoRollSize = 36;
 
 const intToNote = {
     0: 'G5',
@@ -309,7 +309,9 @@ function populateRow(input_info, row){
     for (let i = 0; i < input_info.length; i++){
         var note = input_info[i];
         idx = noteToInt[note];
-        cells[idx].classList.add('painted');
+        if(idx<=pianoRollSize && idx >=0){
+            cells[idx].classList.add('painted');
+        }
     }
 }
 

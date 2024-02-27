@@ -81,5 +81,7 @@ body{
 }
 .note-name{
   display: none;
+  font-weight: bold;
+  font-size: .8rem;
 }
 
