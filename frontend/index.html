@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Estonia&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <meta name="description" content="Create music interactively with AI.">   
     <title>Composer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 </head>
@@ -643,8 +644,14 @@
             <button onclick="playMusic()"id="playButton">Play!</button>
             <button onclick="toggleNoteNames()"id="noteToggle">Note Names On</button>
             <button onclick="clearGrid()">Clear</button>
-            <button onclick="generateTypes('bigram')">Populate (more random)</button>
-            <button onclick="generateTypes('trigram')">Populate (more consistent)</button>
+            <div id="populate-buttons">
+                <h2>Populate Music</h2>
+                <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
+                <button class= "imgbutton" onclick="generateTypes('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" alt="buttonpng"/></button>
+
+            </div>
+
             <!--    <button onclick="sendGenerateRequest()">Generate!</button>-->        
             <p>Tempo</p>
             <div id="slidecontainer">
@@ -698,6 +705,7 @@
                         return possibility.slice(context.length);
                     }
                 }
+                console.log(context);
             }
             random_text(token_count) {
                 var text = '';
@@ -708,7 +716,12 @@
                 var context = starting_context;
                 for (let i = 0; i < token_count; i++) {
                     var token = context.join('').trim();
-                    var new_token = this.random_token(token).trim();
+                    try{
+                        var new_token = this.random_token(token).trim();
+                    }catch(error){
+                        console.log('oh dear');
+                        break;
+                    }
                     if (new_token == "<END>"){
                         return text.trim();
                     }

@@ -352,6 +352,23 @@ var exampleMusic =[['C4', 'E4', 'G4', 'C5'],
 ['G3', 'B3', 'G4', 'F5'],
 ['C3', 'C4', 'G4', 'E5']]
 
+var twinkle = [[ "C4", "C3" ],
+[ "C4", "C3" ],
+[ "G4", "E3" ],
+[ "G4", "E3" ],
+[ "A4", "F3" ],
+[ "A4", "F3" ],
+[ "G4", "E3" ],
+[],
+[ "F4", "D3" ],
+[ "F4", "D3" ],
+[ "E4", "C3" ],
+[ "E4", "C3" ],
+[ "D4", "B2" ],
+[ "D4", "G2" ],
+[ "C4", "C3" ],
+[]]
+
 function readRow(row){
     var outArray = [];
     var children = row.children;
