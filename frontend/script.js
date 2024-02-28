@@ -392,6 +392,34 @@ function getInfoFromGrid(){
     return outArray;
 }
 
+function transposeNote(note, interval){
+    var noteVal = noteToInt[note];
+    var newNoteVal = noteVal - interval;
+    while(newNoteVal > pianoRollSize){
+        newNoteVal -= pianoRollSize;
+    }
+    while(newNoteVal < 0){
+        newNoteVal += pianoRollSize;
+    }
+    var newNote = intToNote[newNoteVal];
+    return newNote;
+}
+
+function transposeGrid(interval){
+    var contents = getInfoFromGrid();
+    var newArray = [];
+    for (let i = 0; i < contents.length; i++) {
+        var currentRow = contents[i];
+        var newRow = [];
+        for (let i = 0; i < currentRow.length; i++) {
+            newRow.push(transposeNote(currentRow[i], interval));
+        }
+        newArray.push(newRow);
+    }    
+    clearGrid();
+    populateGrid(newArray);
+}
+
 function sendGenerateRequest() {
     //get contents of grid
     var stuffToSend = getInfoFromGrid();
