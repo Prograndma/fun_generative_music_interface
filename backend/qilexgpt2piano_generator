@@ -1,0 +1,21 @@
+
+import torch
+from miditok import REMI, TokenizerConfig
+from transformers import GPT2LMHeadModel, GPT2Config
+from midiutil import MIDIFile
+
+tokenizer = REMI.from_pretrained("Qilex/midiRemi")
+model = GPT2LMHeadModel.from_pretrained("Qilex/GPT2Piano")
+device = torch.device(0)
+model.to(device)
+result = model.generate( max_new_tokens=512,
+    num_beams=1,
+    do_sample=True,
+    temperature=1.1,
+    top_k=75,
+    top_p=0.9,
+    pad_token_id= tokenizer['PAD_None'])
+converted_back_midi = tokenizer(result.cpu())
+converted_back_midi.dump('generation.midi')
+mf = MIDIFile("generation.midi")
+mf.writeFile("out.midi")
