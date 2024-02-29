@@ -369,6 +369,26 @@ var twinkle = [[ "C4", "C3" ],
 [ "C4", "C3" ],
 []]
 
+var mario = [
+    ["E3", "E4"],
+    ["E3", "E4"],
+    ["E3", "E4"],
+    ["C3", "C4"],
+    ["E3", "E4"],
+    ["G3", "G4"],
+    ["G2", "G3"],
+    [],
+    ["C3", "C4"],
+    ["G2", "G3"],
+    ["E3"],    
+    [], 
+    ["A3", "A2"],
+    ["B3", "B2"],
+    ["A#3", "A#2"],
+    ["A3", "A2"],
+
+]
+
 function readRow(row){
     var outArray = [];
     var children = row.children;
