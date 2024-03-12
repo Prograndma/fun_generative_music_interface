@@ -2,6 +2,8 @@
 var playMode = false;
 var tempo = 100;
 var namesOn = false;
+var noteLength = 2;
+var maxNoteLength = 12;
 const pianoRollSize = 36;
 
 const intToNote = {
@@ -184,7 +186,7 @@ function playMusic(){
         playMode=true;
         setPlayButton(true);
         var rows = getRows();
-        playRows(convertTempoToDuration(tempo), rows);
+        playRows(rows);
     }else{
         playMode = false;
         setPlayButton(false);
@@ -219,7 +221,7 @@ function convertTempoToDuration(){
     return 60/tempo;
 }
 
-function playRows(t, objectList) {
+function playRows(objectList) {
     function activateObject(obj) {
         addTagToChildren(obj, 'playing');
     }
@@ -235,7 +237,7 @@ function playRows(t, objectList) {
                 activateObject(obj);
                 var chord = getChordFromList(obj);
                 playChord(chord);
-                await delay(t * 1000);
+                await delay(convertTempoToDuration(tempo) * 1000);
                 deactivateObject(obj);
             }else{
                 return;
@@ -473,6 +475,24 @@ function fakeChoral(){
     populateGrid(choral);
     tempo = 60
 }
+
+function incrementNoteLength(){
+    if(noteLength<maxNoteLength){
+        noteLength++;
+    }
+    updateNoteLength();
+}
+function decrementNoteLength(){
+    if(noteLength>0){
+        noteLength--;
+    }
+    updateNoteLength();
+}
+function updateNoteLength(){
+    var length = document.getElementById("num");
+    length.innerHTML= noteLength;
+}
+
 
 function sendGenerateRequest() {
     //get contents of grid
