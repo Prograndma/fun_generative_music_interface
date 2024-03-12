@@ -247,9 +247,34 @@ function playRows(t, objectList) {
     processObjectsSequentially();
 }
 
+
 function playChord(chord){
     if (chord.length > 0) {
       const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+      synth.set({"portamento": 0.05});
+
+    /*  synth.set({
+        "volume": 0,
+        "detune": 0,
+        "portamento": 0.05,
+        "envelope": {
+            "attack": 0.05,
+            "attackCurve": "exponential",
+            "decay": 0.2,
+            "decayCurve": "exponential",
+            "release": 1.5,
+            "releaseCurve": "exponential",
+            "sustain": 0.2
+        },
+        "oscillator": {
+            "partialCount": 0,
+            "partials": [],
+            "phase": 0,
+            "type": "amtriangle",
+            "harmonicity": 0.5,
+            "modulationType": "sine"
+        }
+    });*/
       synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
     }
 }
@@ -409,6 +434,7 @@ function getInfoFromGrid(){
         newRow = readRow(rows[i]);
         outArray.push(newRow);
     }
+    console.log(JSON.stringify(outArray, null, 4)); 
     return outArray;
 }
 
@@ -438,6 +464,14 @@ function transposeGrid(interval){
     }    
     clearGrid();
     populateGrid(newArray);
+}
+function fakeTune(){
+    populateGrid(tune);
+    tempo = 175
+}
+function fakeChoral(){
+    populateGrid(choral);
+    tempo = 60
 }
 
 function sendGenerateRequest() {
