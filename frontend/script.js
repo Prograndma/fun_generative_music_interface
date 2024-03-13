@@ -254,8 +254,6 @@ function playRows(objectList) {
 
 function playChord(chord){
     if (chord.length > 0) {
-
-
     /*  synth.set({
         "volume": 0,
         "detune": 0,
@@ -295,42 +293,6 @@ function playNoteOnClick(input){
     synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
 }
 
-function toggleNoteNames(){
-    if(namesOn){
-        hideNoteNames();
-        namesOn = true;
-    }else{
-        showNoteNames();
-        namesOn = false;
-    }
-}
-
-function hideNoteNames(){
-    const elements = document.getElementsByClassName("note-name");
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'none';
-    }
-}
-
-function showNoteNames(){
-    const elements = document.getElementsByClassName("note-name");
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'inline';
-    }
-}
-
-function toggleNoteNames(){
-    var toggleButton = document.getElementById("noteToggle");
-    if(namesOn){
-        hideNoteNames();
-        toggleButton.innerHTML="Note Names On";
-        namesOn = false;
-    }else{
-        showNoteNames();
-        toggleButton.innerHTML ="Note Names Off";
-        namesOn = true;
-    }
-}   
 
 function populateRow(input_info, row){
     const cells = row.children;
@@ -495,6 +457,7 @@ function updateNoteLength(){
 }
 
 function triggerSynth(){
+    //how to trigger notes that last for different durations
     synth.triggerAttackRelease("C4", "1");
     synth.triggerAttackRelease("C3", "10");
 }
@@ -508,3 +471,17 @@ function sendGenerateRequest() {
         // do whatever you want if console is [object object] then stringify the response
     })
 }
+
+
+/*
+Pseudocode for playing
+for column in array:
+create 12 arrays
+
+if column is painted:
+    if column contains starting value:
+    
+    
+
+
+*/

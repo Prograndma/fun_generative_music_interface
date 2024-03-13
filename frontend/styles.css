@@ -35,7 +35,7 @@ body{
 }
 #grid-container {
     display: grid;
-    grid-template-columns: repeat(16,50px); /* Adjust the number of columns as needed */
+    grid-template-columns: 50px repeat(32,25px); /* Adjust the number of columns as needed */
     gap: 0px;
     /*No user-select so people don't actually highlight anything*/
     -webkit-user-select: none; /* Safari */
@@ -47,7 +47,7 @@ body{
     flex-direction: row;
 }
 .cell {
-    width: 50px;
+    width: 25px;
     height: 20px;
     border: 1px solid #000;
     background-color: #fff;
@@ -63,13 +63,111 @@ body{
     background-color: #525252;
     color:#fff;
 }
+
+.painted.G{
+    background-color: #d21f26;
+}
+.painted.G:hover{
+    background-color: #92241d;
+}
+
+.painted.G-sharp{
+    background-color: #eb3a24;
+}
+.painted.G-sharp:hover{
+    background-color: #cc2c26;
+}
+
+.painted.A{
+    background-color: #f26721;
+}
+.painted.A:hover{
+    background-color: #e04c25;
+}
+.painted.A-sharp{
+    background-color: #faaf17;
+}
+.painted.A-sharp:hover{
+    background-color: #8a6211;
+}
+.painted.B{
+    background-color: #fed00d;
+}
+.painted.B:hover{
+    background-color: #deb625;
+}
+.painted.C{
+    background-color: #28b572;
+}
+.painted.C:hover{
+    background-color: #55b847;
+}
+.painted.C-sharp{
+    background-color: #066b3b;
+}
+.painted.C-sharp:hover{
+    background-color: #183d2b;
+}
+.painted.D{
+    background-color: #089abc;
+}
+.painted.D:hover{
+    background-color: #0bbbbb;
+}
+.painted.D-sharp{
+    background-color: #313d97;
+}
+.painted.D-sharp:hover{
+    background-color: #1f265b;
+}
+.painted.E{
+    background-color: #8b4a9d;
+}
+.painted.E:hover{
+    background-color: #5c2c8f;
+}
+.painted.F{
+    background-color: #ea2f92;
+}
+.painted.F:hover{
+    background-color: #c5509d;
+}
+.painted.F-sharp{
+    background-color: #f699cd;
+}
+.painted.F-sharp:hover{
+    background-color: #996181;
+}
+
+
+
+.name{
+    font-size: small;
+    font-weight: bolder;
+    height: 20px;
+}
+.white{
+    background-color: white;
+    color:black;
+    border-top:2px solid black;
+    border-bottom:2px solid black;
+    border-left:2px solid black;
+}
+.black{
+    background-color: black;
+    color:white;
+    border-right: 8px solid white;
+}
 .cell:hover {
     background-color: #aeaeae; /* Adjust the color as needed */
 }
-#row-1, #row-5, #row-9, #row-13{
+#row-1, #row-9, #row-17, #row-25{
+    border-left: 5px solid #000;
+}
+#row-3, #row-5, #row-7, #row-11, #row-13, #row-15, #row-19, #row-21,#row-23, #row-27,#row-29,#row-31{
     border-left: 2px solid #000;
 }
-#row-16{
+#row-32{
     border-right: 2px solid #000;
 }
 .playing{
@@ -109,9 +207,6 @@ body{
     font-size: medium;
     border-radius: 2px;
     margin:2px;
-
-
-
 }
 
 button img{
