@@ -5,6 +5,8 @@ var namesOn = false;
 var noteLength = 2;
 var maxNoteLength = 12;
 const pianoRollSize = 36;
+const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+synth.set({"portamento": 0.05});
 
 const intToNote = {
     0: 'G5',
@@ -252,8 +254,7 @@ function playRows(objectList) {
 
 function playChord(chord){
     if (chord.length > 0) {
-      const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-      synth.set({"portamento": 0.05});
+
 
     /*  synth.set({
         "volume": 0,
@@ -491,6 +492,11 @@ function decrementNoteLength(){
 function updateNoteLength(){
     var length = document.getElementById("num");
     length.innerHTML= noteLength;
+}
+
+function triggerSynth(){
+    synth.triggerAttackRelease("C4", "1");
+    synth.triggerAttackRelease("C3", "10");
 }
 
 
