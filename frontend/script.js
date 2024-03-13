@@ -122,13 +122,37 @@ gridContainer.addEventListener('mouseup', function () {
     isErasing = false;
 });
   
+function getIndexInRow(element){
+    return Array.prototype.indexOf.call(element.parentNode.childNodes, element);
+}
+
+function getNextNSiblings(element, n) {
+    var siblings = [];
+    for (var i = 0; i < n; i++) {
+        if (element.nextElementSibling) {
+            siblings.push(element.nextElementSibling);
+            element = element.nextElementSibling;
+        } else {
+            break;
+        }
+    }
+    return siblings;
+}
+
+
 // Paint the cell
 function paintCell(event) {
-    if (event.target.classList.contains('cell') && !event.target.classList.contains('painted')) {
+    var tgt = event.target;
+    if (tgt.classList.contains('cell') && !tgt.classList.contains('painted')) {
         // Add the painted class only if it's not already present
-        event.target.classList.add('painted');
-    }else if (event.target.parentElement.classList.contains('cell') && !event.target.parentElement.classList.contains('painted')){
-        event.target.parentElement.classList.add('painted');
+        tgt.classList.add('painted');
+        var idx = getIndexInRow(tgt);
+        var siblings = getNextNSiblings(tgt.parentElement, noteLength);
+        for (var i = 0; i < noteLength-1; i++) {
+            if(i<siblings.length){
+                siblings[i].childNodes[idx].classList.add('painted');
+            }
+        }        
     }
 }
   
@@ -137,8 +161,6 @@ function eraseCell(event) {
     if (event.target.classList.contains('cell') && event.target.classList.contains('painted')) {
         // Remove the painted class if it's present
         event.target.classList.remove('painted');
-    }else if (event.target.parentElement.classList.contains('cell') && event.target.parentElement.classList.contains('painted')){
-        event.target.parentElement.classList.remove('painted');
     }
 }
   
@@ -183,7 +205,7 @@ function getRows(){
 }
 
 function playMusic(){
-    //and a flag to prevent double execution
+    //add a flag to prevent double execution
     if(playMode==false){
         playMode=true;
         setPlayButton(true);
@@ -193,7 +215,7 @@ function playMusic(){
         playMode = false;
         setPlayButton(false);
     }
-  }
+}
 
 function getChordFromList(list){
     var children = Array.from(list.children);
@@ -289,7 +311,6 @@ function clearGrid(){
 
 function playNoteOnClick(input){
     var chord = [input];
-    const synth = new Tone.PolySynth(Tone.Synth).toDestination();
     synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
 }
 
