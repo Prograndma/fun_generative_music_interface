@@ -4,7 +4,8 @@ var tempo = 100;
 var namesOn = false;
 var noteLength = 2;
 var maxNoteLength = 12;
-const pianoRollSize = 36;
+const pianoRollHeight = 36;
+const pianoRollLength = 32;
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 synth.set({"portamento": 0.05});
 
@@ -185,23 +186,9 @@ function removeTagFromChildren(parentElement, className) {
 
 function getRows(){
     var row1 = document.getElementById("row-1");
-    var row2 = document.getElementById("row-2");
-    var row3 = document.getElementById("row-3");
-    var row4 = document.getElementById("row-4");
-    var row5 = document.getElementById("row-5");
-    var row6 = document.getElementById("row-6");
-    var row7 = document.getElementById("row-7");
-    var row8 = document.getElementById("row-8");
-    var row9 = document.getElementById("row-9");
-    var row10 = document.getElementById("row-10");
-    var row11 = document.getElementById("row-11");
-    var row12 = document.getElementById("row-12");
-    var row13 = document.getElementById("row-13");
-    var row14 = document.getElementById("row-14");
-    var row15 = document.getElementById("row-15");
-    var row16 = document.getElementById("row-16");
-    var rows = [row1,row2,row3,row4,row5,row6,row7,row8,row9,row10,row11,row12,row13,row14,row15,row16]
-    return rows;
+    var siblings = getNextNSiblings(row1, 31);
+    siblings.unshift(row1);
+    return siblings;
 }
 
 function playMusic(){
@@ -302,6 +289,14 @@ function playChord(chord){
     }
 }
 
+function clearButton(){
+    if(playMode){
+        playMode = false;
+        setPlayButton(false);
+    }
+    clearGrid();
+}
+
 function clearGrid(){
     const elements = document.querySelectorAll('.painted');
     elements.forEach(element => {
@@ -320,7 +315,7 @@ function populateRow(input_info, row){
     for (let i = 0; i < input_info.length; i++){
         var note = input_info[i];
         idx = noteToInt[note];
-        if(idx<=pianoRollSize && idx >=0){
+        if(idx<=pianoRollHeight && idx >=0){
             cells[idx].classList.add('painted');
         }
     }
@@ -328,20 +323,19 @@ function populateRow(input_info, row){
 
 function populateGrid(input){
     clearGrid();
-    var rowNum = 16;
     //trim input
-    if (input.length > rowNum) {
-        input = input.slice(0, rowNum);
+    if (input.length > pianoRollLength) {
+        input = input.slice(0, pianoRollLength);
     }
-    if(input.length < rowNum){
-        extra = rowNum - input.length;
+    if(input.length < pianoRollLength){
+        extra = pianoRollLength - input.length;
         for (let i = 0; i < extra; i++) {
             input.push([]);
         }       
     }
     var rows = getRows();
     //populate each row
-    for (let i = 0; i < rowNum; i++) {
+    for (let i = 0; i < pianoRollLength; i++) {
         populateRow(input[i] , rows[i]);
     }
 }
@@ -413,10 +407,9 @@ function readRow(row){
 }
 
 function getInfoFromGrid(){
-    var rowNum = 16;
     var rows = getRows();
     var outArray = [];
-    for (let i = 0; i < rowNum; i++) {
+    for (let i = 0; i < pianoRollLength; i++) {
         newRow = readRow(rows[i]);
         outArray.push(newRow);
     }
@@ -427,11 +420,11 @@ function getInfoFromGrid(){
 function transposeNote(note, interval){
     var noteVal = noteToInt[note];
     var newNoteVal = noteVal - interval;
-    while(newNoteVal > pianoRollSize){
-        newNoteVal -= pianoRollSize;
+    while(newNoteVal > pianoRollHeight){
+        newNoteVal -= pianoRollHeight;
     }
     while(newNoteVal < 0){
-        newNoteVal += pianoRollSize;
+        newNoteVal += pianoRollHeight;
     }
     var newNote = intToNote[newNoteVal];
     return newNote;

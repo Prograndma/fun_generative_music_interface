@@ -1306,7 +1306,7 @@
         <div id="button-holder">
             <div id="note-length"><button onclick="decrementNoteLength()">-</button> <div id="num">2</div><button onclick="incrementNoteLength()">+</button></div>
             <button class= "normalbutton" onclick="playMusic()"id="playButton">Play!</button>
-            <button class= "normalbutton" onclick="clearGrid()">Clear</button>
+            <button class= "normalbutton" onclick="clearButton()">Clear</button>
             <button class= "normalbutton" onclick="transposeGrid(1)">Shift up</button>
             <button class= "normalbutton" onclick="transposeGrid(-1)">Shift down</button>
 
@@ -1426,9 +1426,9 @@
 
         function generateSample(model_to_use){
             if (model_to_use == "bigram"){
-                output = bigram_model.random_text(16);
+                output = bigram_model.random_text(32);
             }else{
-                output = trigram_model.random_text(16);
+                output = trigram_model.random_text(32);
             }
             var arrayStrings = output.split(' ');
             var outArray = [];
