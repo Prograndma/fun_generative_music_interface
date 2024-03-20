@@ -281,16 +281,52 @@ function convertTempoToDuration(){
     return 60/tempo;
 }
 
-function getChordFromList(list){
+function getChordsFromList(list){
     var children = Array.from(list.children);
-    var chord = [];
+    var one = [];
+    var two = [];
+    var three = [];
+    var four = [];
+    var five = [];
+    var six = [];
+    var seven = [];
+    var eight = [];
+    var nine = [];
+    var ten = [];
+    var eleven = [];
+    var twelve = [];
     for(var i=0;i<children.length; i++){
-        if(children[i].classList.contains("start")){
-            //THIS STILL NEEDS SOME WORK
-            chord.push(intToNote[i]);
+        var note = children[i];
+        if(note.classList.contains("start")){
+            var length = note.childNodes[0].innerHTML;
+            if(length == 1){
+                one.push(intToNote[i]);
+            }else if(length == 2){
+                two.push(intToNote[i]);
+            }else if(length == 3){
+                three.push(intToNote[i]);
+            }else if(length == 4){
+                four.push(intToNote[i]);
+            }else if(length == 5){
+                five.push(intToNote[i]);
+            }else if(length == 6){
+                six.push(intToNote[i]);
+            }else if(length == 7){
+                seven.push(intToNote[i]);
+            }else if(length == 8){
+                eight.push(intToNote[i]);
+            }else if(length == 9){
+                nine.push(intToNote[i]);
+            }else if(length == 10){
+                ten.push(intToNote[i]);
+            }else if(length == 11){
+                eleven.push(intToNote[i]);
+            }else if(length == 12){
+                twelve.push(intToNote[i]);
+            }
         }
     }
-    return chord;
+    return [one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve];
 }
 
 function playRows(objectList) {
@@ -307,8 +343,9 @@ function playRows(objectList) {
         for (const obj of objectList) {
             if(playMode){
                 activateObject(obj);
-                var chord = getChordFromList(obj);
-                playChord(chord);
+                var chords = getChordsFromList(obj);
+                playChords(chords);
+                //                playChord(chord);
                 await delay(convertTempoToDuration(tempo) * 1000);
                 deactivateObject(obj);
             }else{
@@ -349,6 +386,15 @@ function playChord(chord){
       synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
     }
 }
+function playChords(chords){
+    for(var i=0;i<12; i++){
+        chord = chords[i];
+        if (chord.length > 0) {
+            synth.triggerAttackRelease(chord, convertTempoToDuration(tempo) * (i+1)); 
+          }
+    }
+}
+
 
 function clearButton(){
     if(playMode){
@@ -386,6 +432,7 @@ function populateRow(input_info, row){
         if(idx<=pianoRollHeight && idx >=0){
             cells[idx].classList.add('painted');
             cells[idx].classList.add('start');
+            cells[idx].children[0].innerHTML = '1';
         }
     }
 }
@@ -482,7 +529,7 @@ function getInfoFromGrid(){
         newRow = readRow(rows[i]);
         outArray.push(newRow);
     }
-    console.log(JSON.stringify(outArray, null, 4)); 
+//    console.log(JSON.stringify(outArray, null, 4)); 
     return outArray;
 }
 
@@ -539,11 +586,6 @@ function updateNoteLength(){
     length.innerHTML= noteLength;
 }
 
-function triggerSynth(){
-    //how to trigger notes that last for different durations
-    synth.triggerAttackRelease("C4", "1");
-    synth.triggerAttackRelease("C3", "10");
-}
 
 function majorMode(input){
     var majorButton =  document.getElementById("major");
