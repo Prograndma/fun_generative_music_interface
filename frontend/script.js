@@ -118,7 +118,7 @@ gridContainer.addEventListener('mousemove', function (event) {
     }
 });
   
-gridContainer.addEventListener('mouseup', function () {
+document.addEventListener('mouseup', function () {
     isPainting = false;
     isErasing = false;
 });
@@ -144,7 +144,9 @@ function getNextNSiblings(element, n) {
 // Paint the cell
 function paintCell(event) {
     var tgt = event.target;
-    if (tgt.classList.contains('cell') && !tgt.classList.contains('painted')) {
+    if (tgt.parentElement.classList.contains('cell') && !tgt.parentElement.classList.contains('painted')){
+        tgt = tgt.parentElement;
+    }if(tgt.classList.contains('cell') && !tgt.classList.contains('painted')) {
         // Add the painted class only if it's not already present
         tgt.classList.add('painted');
         var idx = getIndexInRow(tgt);
@@ -159,9 +161,12 @@ function paintCell(event) {
   
 // Erase the cell
 function eraseCell(event) {
-    if (event.target.classList.contains('cell') && event.target.classList.contains('painted')) {
+    var tgt = event.target;
+    if (tgt.parentElement.classList.contains('cell') && !tgt.parentElement.classList.contains('painted')){
+        tgt = tgt.parentElement;
+    }if (tgt.classList.contains('cell') &&tgt.classList.contains('painted')) {
         // Remove the painted class if it's present
-        event.target.classList.remove('painted');
+        tgt.classList.remove('painted');
     }
 }
   
