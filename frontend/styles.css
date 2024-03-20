@@ -145,6 +145,7 @@ body{
     font-size: small;
     font-weight: bolder;
     height: 20px;
+    cursor: pointer;
 }
 .white{
     background-color: white;
@@ -152,7 +153,17 @@ body{
     border-top:2px solid black;
     border-bottom:2px solid black;
     border-left:2px solid black;
+    cursor:pointer;
 }
+.white:active{
+    background-color: red;
+}
+
+.name:active{
+    background-color: red;
+}
+
+
 .black{
     background-color: black;
     color:white;
