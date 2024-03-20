@@ -309,6 +309,11 @@ function playNoteOnClick(input){
     synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
 }
 
+function playNoteOnClickTempoInvariant(input){
+    var chord = [input];
+    synth.triggerAttackRelease(chord, .5); 
+}
+
 
 function populateRow(input_info, row){
     const cells = row.children;

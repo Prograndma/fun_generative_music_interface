@@ -156,11 +156,13 @@ body{
     cursor:pointer;
 }
 .white:active{
-    background-color: red;
+    background-color: rgb(228, 228, 228);
 }
+.black:active{
+    background-color: rgb(69, 69, 69);
 
+}
 .name:active{
-    background-color: red;
 }
 
 
