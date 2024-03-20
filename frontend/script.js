@@ -139,7 +139,18 @@ function getNextNSiblings(element, n) {
     }
     return siblings;
 }
-
+function getLastNSiblings(element, n) {
+    var siblings = [];
+    for (var i = 0; i < n; i++) {
+        if (element.previousElementSibling) {
+            siblings.push(element.previousElementSibling);
+            element = element.previousElementSibling;
+        } else {
+            break;
+        }
+    }
+    return siblings;
+}
 
 // Paint the cell
 function paintCell(event) {
@@ -149,11 +160,14 @@ function paintCell(event) {
     }if(tgt.classList.contains('cell') && !tgt.classList.contains('painted')) {
         // Add the painted class only if it's not already present
         tgt.classList.add('painted');
+        tgt.classList.add('start');
         var idx = getIndexInRow(tgt);
         var siblings = getNextNSiblings(tgt.parentElement, noteLength);
+        //traverse right for duration of note
         for (var i = 0; i < noteLength-1; i++) {
             if(i<siblings.length){
                 siblings[i].childNodes[idx].classList.add('painted');
+                siblings[i].childNodes[idx].classList.add('continue');
             }
         }        
     }
@@ -162,11 +176,49 @@ function paintCell(event) {
 // Erase the cell
 function eraseCell(event) {
     var tgt = event.target;
-    if (tgt.parentElement.classList.contains('cell') && !tgt.parentElement.classList.contains('painted')){
+    if (tgt.parentElement.classList.contains('cell') && tgt.parentElement.classList.contains('painted')){
         tgt = tgt.parentElement;
-    }if (tgt.classList.contains('cell') &&tgt.classList.contains('painted')) {
+    }if(tgt.classList.contains('cell') &&tgt.classList.contains('painted')) {
         // Remove the painted class if it's present
         tgt.classList.remove('painted');
+        var started = false;
+        if(tgt.classList.contains('start')){
+            tgt.classList.remove('start');
+            started = true;
+        }
+        var idx = getIndexInRow(tgt);
+        var siblings = getNextNSiblings(tgt.parentElement, noteLength);
+        //traverse right for duration of note
+        for (var i = 0; i < maxNoteLength-1; i++) {
+            if(i<siblings.length){
+                //check if next sibling is a continue
+                if(siblings[i].childNodes[idx].classList.contains('painted')&&!siblings[i].childNodes[idx].classList.contains('start')){
+                    siblings[i].childNodes[idx].classList.remove('painted');
+                    siblings[i].childNodes[idx].classList.remove('continue');
+                }else{
+                    break;
+                }
+            }
+        }
+        //traverse left if we didn't hit the start of the note 
+        if(!started){
+            var previousSiblings = getLastNSiblings(tgt.parentElement, maxNoteLength);
+            for (var i = 0; i < maxNoteLength-1; i++) {
+                if(i<previousSiblings.length){
+                    //check if next sibling is a continue
+                    if(previousSiblings[i].childNodes[idx].classList.contains('painted')&&previousSiblings[i].childNodes[idx].classList.contains('continue')){
+                        previousSiblings[i].childNodes[idx].classList.remove('painted');
+                        previousSiblings[i].childNodes[idx].classList.remove('continue');
+                    }else if(previousSiblings[i].childNodes[idx].classList.contains('start')) {
+                        previousSiblings[i].childNodes[idx].classList.remove('painted');
+                        previousSiblings[i].childNodes[idx].classList.remove('start');
+                        break;
+                    }
+                }
+            }
+        }
+
+
     }
 }
   
@@ -306,6 +358,8 @@ function clearGrid(){
     const elements = document.querySelectorAll('.painted');
     elements.forEach(element => {
         element.classList.remove('painted');
+        element.classList.remove('continue');
+        element.classList.remove('start');
     });
 }
 

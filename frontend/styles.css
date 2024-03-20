@@ -21,6 +21,7 @@ body{
     justify-content: center;
     border-bottom: 5px solid rgb(49, 49, 88);
 }
+
 #header h1{
     font-size: 75px;
     margin: 0px;
@@ -55,6 +56,8 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+
 .painted {
     background-color: #000;
     color:#fff;
@@ -67,25 +70,37 @@ body{
 .painted.G{
     background-color: #d21f26;
 }
+.painted.G.start{
+    border-left: 6px solid #92241d;
+}
 .painted.G:hover{
     background-color: #92241d;
 }
-
 .painted.G-sharp{
     background-color: #eb3a24;
+}
+.painted.G-sharp.start{
+    border-left: 6px solid #cc2c26;
 }
 .painted.G-sharp:hover{
     background-color: #cc2c26;
 }
-
 .painted.A{
     background-color: #f26721;
 }
+.painted.A.start{
+    border-left: 6px solid #e04c25;
+}    
 .painted.A:hover{
     background-color: #e04c25;
 }
+
+
 .painted.A-sharp{
     background-color: #faaf17;
+}
+.painted.A-sharp.start{
+    border-left: 6px solid #8a6211;
 }
 .painted.A-sharp:hover{
     background-color: #8a6211;
@@ -93,29 +108,44 @@ body{
 .painted.B{
     background-color: #fed00d;
 }
+.painted.B.start{
+    border-left: 6px solid #deb625;
+}
 .painted.B:hover{
     background-color: #deb625;
 }
 .painted.C{
-    background-color: #28b572;
+    background-color: #55b847;
+}
+.painted.C.start{
+    border-left: 6px solid #3f8536;
 }
 .painted.C:hover{
-    background-color: #55b847;
+    background-color: #3f8536;
 }
 .painted.C-sharp{
     background-color: #066b3b;
+}
+.painted.C-sharp.start{
+    border-left: 6px solid #183d2b;
 }
 .painted.C-sharp:hover{
     background-color: #183d2b;
 }
 .painted.D{
-    background-color: #089abc;
+    background-color: #0bbbbb;
+}
+.painted.D.start{
+    border-left: 6px solid #089abc;
 }
 .painted.D:hover{
-    background-color: #0bbbbb;
+    background-color: #089abc;
 }
 .painted.D-sharp{
     background-color: #313d97;
+}
+.painted.D-sharp.start{
+    border-left: 6px solid #1f265b;
 }
 .painted.D-sharp:hover{
     background-color: #1f265b;
@@ -123,17 +153,26 @@ body{
 .painted.E{
     background-color: #8b4a9d;
 }
+.painted.E.start{
+    border-left: 6px solid #5c2c8f;
+}
 .painted.E:hover{
     background-color: #5c2c8f;
 }
 .painted.F{
     background-color: #ea2f92;
 }
+.painted.F.start{
+    border-left: 6px solid #b42270;
+}
 .painted.F:hover{
-    background-color: #c5509d;
+    background-color: #b42270;
 }
 .painted.F-sharp{
     background-color: #f699cd;
+}
+.painted.F-sharp.start{
+    border-left: 6px solid #996181;
 }
 .painted.F-sharp:hover{
     background-color: #996181;
@@ -186,6 +225,10 @@ body{
 .playing.painted{
     background-color: green;
 }
+.playing.painted.start{
+    border-left: 6px solid rgb(2, 98, 2);
+
+}
 #slidecontainer{
     display: flex;
     flex-direction: row;
@@ -229,6 +272,6 @@ button img{
 .cell-contents{
     height:100%;
     width:100%;
-    border-right: 2px solid white;
     color:#00000000;
 }
+
