@@ -601,6 +601,24 @@ function majorMode(input){
     }
 }
 
+document.body.addEventListener('keydown', function (event) {
+    const key = event.key;
+    switch (key) {
+        case "ArrowLeft":
+            decrementNoteLength();
+            break;
+        case "ArrowRight":
+            incrementNoteLength();
+            break;
+        case "ArrowUp":
+            incrementNoteLength();
+            break;
+        case "ArrowDown":
+            decrementNoteLength();
+            break;
+    }
+});
+
 function sendGenerateRequest() {
     //get contents of grid
     var stuffToSend = getInfoFromGrid();
