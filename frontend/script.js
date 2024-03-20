@@ -1,7 +1,7 @@
 //global variables
 var playMode = false;
 var tempo = 100;
-var namesOn = false;
+var major = true;
 var noteLength = 2;
 var maxNoteLength = 12;
 const pianoRollHeight = 36;
@@ -161,6 +161,7 @@ function paintCell(event) {
         // Add the painted class only if it's not already present
         tgt.classList.add('painted');
         tgt.classList.add('start');
+        tgt.children[0].innerHTML =noteLength;
         var idx = getIndexInRow(tgt);
         var siblings = getNextNSiblings(tgt.parentElement, noteLength);
         //traverse right for duration of note
@@ -184,6 +185,7 @@ function eraseCell(event) {
         var started = false;
         if(tgt.classList.contains('start')){
             tgt.classList.remove('start');
+            tgt.children[0].innerHTML ='';
             started = true;
         }
         var idx = getIndexInRow(tgt);
@@ -212,6 +214,7 @@ function eraseCell(event) {
                     }else if(previousSiblings[i].childNodes[idx].classList.contains('start')) {
                         previousSiblings[i].childNodes[idx].classList.remove('painted');
                         previousSiblings[i].childNodes[idx].classList.remove('start');
+                        previousSiblings[i].childNodes[idx].children[0].innerHTML ='';
                         break;
                     }
                 }
@@ -261,17 +264,6 @@ function playMusic(){
     }
 }
 
-function getChordFromList(list){
-    var children = Array.from(list.children);
-    var chord = [];
-    for(var i=0;i<children.length; i++){
-        if(children[i].classList.contains("painted")){
-            chord.push(intToNote[i]);
-        }
-    }
-    return chord;
-}
-
 function setPlayButton(stop){
     var playButton = document.getElementById("playButton");
     if(stop){
@@ -287,6 +279,18 @@ function getTempo(){
 
 function convertTempoToDuration(){
     return 60/tempo;
+}
+
+function getChordFromList(list){
+    var children = Array.from(list.children);
+    var chord = [];
+    for(var i=0;i<children.length; i++){
+        if(children[i].classList.contains("start")){
+            //THIS STILL NEEDS SOME WORK
+            chord.push(intToNote[i]);
+        }
+    }
+    return chord;
 }
 
 function playRows(objectList) {
@@ -381,6 +385,7 @@ function populateRow(input_info, row){
         idx = noteToInt[note];
         if(idx<=pianoRollHeight && idx >=0){
             cells[idx].classList.add('painted');
+            cells[idx].classList.add('start');
         }
     }
 }
@@ -540,6 +545,19 @@ function triggerSynth(){
     synth.triggerAttackRelease("C3", "10");
 }
 
+function majorMode(input){
+    var majorButton =  document.getElementById("major");
+    var minorButton =  document.getElementById("minor");
+    if(input == true){
+        majorButton.style.backgroundColor ="rgb(52, 52, 52)";
+        minorButton.style.backgroundColor ="white";
+        major = true; 
+    }else{
+        majorButton.style.backgroundColor ="white";
+        minorButton.style.backgroundColor ="rgb(52, 52, 52)";
+        major = false; 
+    }
+}
 
 function sendGenerateRequest() {
     //get contents of grid

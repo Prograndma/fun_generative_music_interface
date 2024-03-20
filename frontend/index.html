@@ -1314,16 +1314,16 @@
             <div id="populate-buttons">
                 <h2>Populate Music</h2>
                 <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
-                <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="populateGrid(majorArpeggio)"><img src="img/happy.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="populateGrid(minorArpeggio)"><img src="img/sad.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" id="minor" onclick="majorMode(false)"><img src="img/sad.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
             <div id="Examples">
                 <h2>Pre-Cooked Examples</h2>
-                <button class= "imgbutton" onclick="fakeChoral()"><img src="img/priest.png" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="fakeTune()"><img src="img/sun.png" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="fakeChoral()"><img src="img/priest.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="fakeTune()"><img src="img/sun.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "normalbutton" >Generate!</button>
 
 
