@@ -6,8 +6,50 @@ var noteLength = 2;
 var maxNoteLength = 12;
 const pianoRollHeight = 36;
 const pianoRollLength = 32;
-const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-synth.set({"portamento": 0.05});
+const sineSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+    /*  synth.set({
+        "volume": 0,
+        "detune": 0,
+        "portamento": 0.05,
+        "envelope": {
+            "attack": 0.05,
+            "attackCurve": "exponential",
+            "decay": 0.2,
+            "decayCurve": "exponential",
+            "release": 1.5,
+            "releaseCurve": "exponential",
+            "sustain": 0.2
+        },
+        "oscillator": {
+            "partialCount": 0,
+            "partials": [],
+            "phase": 0,
+            "type": "amtriangle",
+            "harmonicity": 0.5,
+            "modulationType": "sine"
+        }
+    });*/
+sineSynth.set({"portamento": 0.05});
+var synth  = sineSynth;
+
+const pianoSampler = new Tone.Sampler({
+	urls: {
+		G2: "G2.mp3",
+		G3: "G3.mp3",
+		G4: "G4.mp3",
+        G5: "G5.mp3",
+	},
+	baseUrl: "samples/piano/",
+}).toDestination();
+
+const celloSampler = new Tone.Sampler({
+	urls: {
+		G2: "G2.mp3",
+		G3: "G3.mp3",
+		G4: "G4.mp3",
+	},
+	baseUrl: "samples/cello/",
+}).toDestination();
 
 const intToNote = {
     0: 'G5',
@@ -220,8 +262,6 @@ function eraseCell(event) {
                 }
             }
         }
-
-
     }
 }
   
@@ -361,28 +401,6 @@ function playRows(objectList) {
 
 function playChord(chord){
     if (chord.length > 0) {
-    /*  synth.set({
-        "volume": 0,
-        "detune": 0,
-        "portamento": 0.05,
-        "envelope": {
-            "attack": 0.05,
-            "attackCurve": "exponential",
-            "decay": 0.2,
-            "decayCurve": "exponential",
-            "release": 1.5,
-            "releaseCurve": "exponential",
-            "sustain": 0.2
-        },
-        "oscillator": {
-            "partialCount": 0,
-            "partials": [],
-            "phase": 0,
-            "type": "amtriangle",
-            "harmonicity": 0.5,
-            "modulationType": "sine"
-        }
-    });*/
       synth.triggerAttackRelease(chord, convertTempoToDuration(tempo)); 
     }
 }
@@ -529,7 +547,6 @@ function getInfoFromGrid(){
         newRow = readRow(rows[i]);
         outArray.push(newRow);
     }
-//    console.log(JSON.stringify(outArray, null, 4)); 
     return outArray;
 }
 
@@ -560,14 +577,6 @@ function transposeGrid(interval){
     clearGrid();
     populateGrid(newArray);
 }
-function fakeTune(){
-    populateGrid(tune);
-    tempo = 175
-}
-function fakeChoral(){
-    populateGrid(choral);
-    tempo = 60
-}
 
 function incrementNoteLength(){
     if(noteLength<maxNoteLength){
@@ -591,13 +600,33 @@ function majorMode(input){
     var majorButton =  document.getElementById("major");
     var minorButton =  document.getElementById("minor");
     if(input == true){
-        majorButton.style.backgroundColor ="rgb(52, 52, 52)";
-        minorButton.style.backgroundColor ="white";
+        majorButton.classList.add('selected');
+        minorButton.classList.remove('selected');
         major = true; 
     }else{
-        majorButton.style.backgroundColor ="white";
-        minorButton.style.backgroundColor ="rgb(52, 52, 52)";
+        majorButton.classList.remove('selected');
+        minorButton.classList.add('selected');
         major = false; 
+    }
+}
+
+function setInstrument(instrument){
+    var celloButton = document.getElementById('celloButton');
+    var pianoButton = document.getElementById('pianoButton');
+    var synthButton = document.getElementById('synthButton');
+    celloButton.classList.remove('selected');
+    pianoButton.classList.remove('selected');
+    synthButton.classList.remove('selected');
+    if(instrument=='cello'){
+        celloButton.classList.add('selected');
+        synth = celloSampler;
+
+    }else if(instrument=='piano'){
+        pianoButton.classList.add('selected');
+        synth = pianoSampler;
+    }else{
+        synthButton.classList.add('selected');
+        synth = sineSynth;
     }
 }
 
@@ -628,16 +657,3 @@ function sendGenerateRequest() {
     })
 }
 
-
-/*
-Pseudocode for playing
-for column in array:
-create 12 arrays
-
-if column is painted:
-    if column contains starting value:
-    
-    
-
-
-*/

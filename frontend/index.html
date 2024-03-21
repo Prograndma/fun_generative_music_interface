@@ -1317,16 +1317,14 @@
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button class= "imgbutton" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton selected" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" id="minor" onclick="majorMode(false)"><img src="img/sad.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
-            <div id="Examples">
-                <h2>Pre-Cooked Examples</h2>
-                <button class= "imgbutton" onclick="fakeChoral()"><img src="img/priest.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="fakeTune()"><img src="img/sun.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button class= "normalbutton" >Generate!</button>
-
-
+            <div id="Instruments">
+                <h2>Instruments</h2>
+                <button id="synthButton" class= "imgbutton selected" onclick="setInstrument('synth')"><img src="img/robot.png" draggable="false" (dragstart)="false;" alt="picture of a robot"/></button>
+                <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
+                <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
             <h3>Tempo</h3>
             <div id="slidecontainer">

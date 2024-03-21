@@ -207,7 +207,7 @@ body{
     border-right: 8px solid white;
 }
 .cell:hover {
-    background-color: #aeaeae; /* Adjust the color as needed */
+    background-color: #aeaeae; 
 }
 #row-1, #row-9, #row-17, #row-25{
     border-left: 5px solid #000;
@@ -265,15 +265,11 @@ button img{
     max-width: 100%;
     max-height: 100%;
     border-radius: 50%;
-    user-drag: none; 
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-}
-#major{
-    background-color: rgb(52, 52, 52);
 }
 
 .cell-contents{
@@ -282,3 +278,6 @@ button img{
     color:#00000000;
 }
 
+.selected{
+    background-color: #acd1d1;
+}
