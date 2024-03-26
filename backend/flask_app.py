@@ -6,7 +6,10 @@
 ### that is it. 
 
 from flask import Flask
+from flask import request
 from flask_cors import CORS
+from make_midi import populate_midi
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -17,6 +20,10 @@ CORS(app)
 @app.route("/", methods=["POST"])
 def home():
   the_stuff = gonna_do_some_stuff()
+  a = json.loads(request.data)
+  # print(a)
+  # print("######################")
+  midi = populate_midi(a["notes"], a["songTempo"])
   return f"Hello, cross-origin-world!, {the_stuff}"
 
 
