@@ -194,26 +194,37 @@ function getLastNSiblings(element, n) {
     return siblings;
 }
 
-// Paint the cell
-function paintCell(event) {
-    var tgt = event.target;
+function performPaint(tgt, length){
     if (tgt.parentElement.classList.contains('cell') && !tgt.parentElement.classList.contains('painted')){
         tgt = tgt.parentElement;
     }if(tgt.classList.contains('cell') && !tgt.classList.contains('painted')) {
         // Add the painted class only if it's not already present
         tgt.classList.add('painted');
         tgt.classList.add('start');
-        tgt.children[0].innerHTML =noteLength;
+        tgt.children[0].innerHTML = length;
         var idx = getIndexInRow(tgt);
-        var siblings = getNextNSiblings(tgt.parentElement, noteLength);
+        var siblings = getNextNSiblings(tgt.parentElement, length);
         //traverse right for duration of note
-        for (var i = 0; i < noteLength-1; i++) {
+        for (var i = 0; i < length-1; i++) {
             if(i<siblings.length){
-                siblings[i].childNodes[idx].classList.add('painted');
-                siblings[i].childNodes[idx].classList.add('continue');
+                if(siblings[i].childNodes[idx].classList.contains('painted')){
+                    //don't overwrite notes that already exist, defer to them instead
+                    tgt.children[0].innerHTML = i+1;
+                    break;
+                }else{
+                    siblings[i].childNodes[idx].classList.add('painted');
+                    siblings[i].childNodes[idx].classList.add('continue');
+                }
             }
         }        
     }
+}
+
+// Paint the cell
+function paintCell(event) {
+    var tgt = event.target;
+    var length = noteLength;
+    performPaint(tgt, length);
 }
   
 // Erase the cell
@@ -385,7 +396,6 @@ function playRows(objectList) {
                 activateObject(obj);
                 var chords = getChordsFromList(obj);
                 playChords(chords);
-                //                playChord(chord);
                 await delay(convertTempoToDuration(tempo) * 1000);
                 deactivateObject(obj);
             }else{
@@ -428,6 +438,7 @@ function clearGrid(){
         element.classList.remove('painted');
         element.classList.remove('continue');
         element.classList.remove('start');
+        element.children[0].innerHTML='';
     });
 }
 
@@ -446,11 +457,12 @@ function populateRow(input_info, row){
     const cells = row.children;
     for (let i = 0; i < input_info.length; i++){
         var note = input_info[i];
-        idx = noteToInt[note];
+        if(typeof(note)!="object"){
+            note = [note, 1]
+        }
+        idx = noteToInt[note[0]];
         if(idx<=pianoRollHeight && idx >=0){
-            cells[idx].classList.add('painted');
-            cells[idx].classList.add('start');
-            cells[idx].children[0].innerHTML = '1';
+            performPaint(cells[idx], note[1]);
         }
     }
 }
@@ -533,8 +545,9 @@ function readRow(row){
     var children = row.children;
     for (let i = 0; i < children.length; i++){
         var child = children[i];
-        if(child.classList.contains('painted')){
-            outArray.push(intToNote[i]);
+        if(child.classList.contains('start')){
+            var length = child.children[0].innerHTML;
+            outArray.push([intToNote[i], length]);
         }
     }
     return outArray;
@@ -551,7 +564,7 @@ function getInfoFromGrid(){
 }
 
 function transposeNote(note, interval){
-    var noteVal = noteToInt[note];
+    var noteVal = noteToInt[note[0]];
     var newNoteVal = noteVal - interval;
     while(newNoteVal > pianoRollHeight){
         newNoteVal -= pianoRollHeight;
@@ -560,7 +573,7 @@ function transposeNote(note, interval){
         newNoteVal += pianoRollHeight;
     }
     var newNote = intToNote[newNoteVal];
-    return newNote;
+    return [newNote, note[1]];
 }
 
 function transposeGrid(interval){
@@ -620,13 +633,48 @@ function setInstrument(instrument){
     if(instrument=='cello'){
         celloButton.classList.add('selected');
         synth = celloSampler;
-
     }else if(instrument=='piano'){
         pianoButton.classList.add('selected');
         synth = pianoSampler;
     }else{
         synthButton.classList.add('selected');
         synth = sineSynth;
+    }
+}
+
+function smoothNote(note){
+    var howFarToGo = maxNoteLength-1;
+    var idx = getIndexInRow(note);
+    var siblings = getNextNSiblings(note.parentElement, howFarToGo);
+    //traverse right for duration of note
+    var length = 1;
+    for (var i = 0; i < howFarToGo-1; i++) {
+        if(i<siblings.length){
+            if(siblings[i].childNodes[idx].classList.contains('painted')){
+                //remove start
+                if(siblings[i].childNodes[idx].classList.contains('start')){
+                    siblings[i].childNodes[idx].classList.remove('start');
+                }
+                length++;
+                siblings[i].childNodes[idx].innerHTML = '<div class="cell-contents"></div>';
+            }else{
+                note.children[0].innerHTML = length;
+                return;
+            }
+        }
+    }
+    note.children[0].innerHTML = length;
+}
+
+function smoothGrid(){
+    var rows = getRows();
+    for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].children;
+        for (var j = 0; j < rows.length; j++){
+            if(cells[j].classList.contains("painted")){
+                smoothNote(cells[j]);
+            }
+        }
     }
 }
 
