@@ -650,8 +650,8 @@ document.body.addEventListener('keydown', function (event) {
 
 function sendGenerateRequest() {
     //get contents of grid
-    var stuffToSend = getInfoFromGrid();
-    axios.post("http://127.0.0.1:5000", {name: "fart"}).then(function (response) {
+    var notesToSend = getInfoFromGrid();            // Need to create a new function that puts the duration at the beginning of the note. For backend purposes. 
+    axios.post("http://127.0.0.1:5000", {name: "song", songTempo: tempo, notes: notesToSend}).then(function (response) {
         console.log(response)
         // do whatever you want if console is [object object] then stringify the response
     })
