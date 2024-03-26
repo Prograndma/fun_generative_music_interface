@@ -21,8 +21,6 @@ CORS(app)
 def home():
   the_stuff = gonna_do_some_stuff()
   a = json.loads(request.data)
-  # print(a)
-  # print("######################")
   midi = populate_midi(a["notes"], a["songTempo"])
   return f"Hello, cross-origin-world!, {the_stuff}"
 
