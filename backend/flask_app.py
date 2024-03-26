@@ -19,11 +19,6 @@ CORS(app)
 # and construct the midi here, since that might be easier than passing around a midi file. 
 @app.route("/", methods=["POST"])
 def home():
-  the_stuff = gonna_do_some_stuff()
   a = json.loads(request.data)
   midi = populate_midi(a["notes"], a["songTempo"])
-  return f"Hello, cross-origin-world!, {the_stuff}"
-
-
-def gonna_do_some_stuff():
-  return "I CALLED A FUNCTION"
+  return midi
