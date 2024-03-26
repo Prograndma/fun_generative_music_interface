@@ -5,8 +5,7 @@
 ### flask --app flask_app.py run
 ### that is it. 
 
-from flask import Flask
-from flask import request
+from flask import Flask, request, send_file, make_response
 from flask_cors import CORS
 from make_midi import populate_midi
 import json
@@ -21,4 +20,8 @@ CORS(app)
 def home():
   a = json.loads(request.data)
   midi = populate_midi(a["notes"], a["songTempo"])
-  return midi
+  try:
+    return send_file(f"..\{midi}", as_attachment=True)
+  except Exception as e:
+    print(e)
+    return make_response(f"Error: {e}", 500)

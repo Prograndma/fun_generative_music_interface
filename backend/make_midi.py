@@ -66,4 +66,4 @@ def populate_midi(notes, tempo):
 
     with open("output.midi", 'wb') as outf:
         mf.writeFile(outf)
-    return mf
+    return "output.midi"
