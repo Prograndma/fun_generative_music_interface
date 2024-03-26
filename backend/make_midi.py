@@ -55,10 +55,6 @@ def populate_midi(notes, tempo):
     time = 0    # start at the beginning
     channel = 0
     volume = 100
-
-    print(f"Note lens: {len(notes)}")
-    print(f"Tempo: {tempo}")
-    print(f"TempoType: {type(tempo)}")
     tempo = int(tempo)
 
     mf.addTrackName(track, time, "Sample Track")
@@ -68,6 +64,5 @@ def populate_midi(notes, tempo):
             duration, note_value = string_parse(pitch)
             mf.addNote(track, channel, note_value, note_time, duration, volume)
 
-    print("Made the midi file??")
     with open("output.midi", 'wb') as outf:
         mf.writeFile(outf)
