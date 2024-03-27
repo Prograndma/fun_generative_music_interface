@@ -38,6 +38,10 @@ const pianoSampler = new Tone.Sampler({
 		G3: "G3.mp3",
 		G4: "G4.mp3",
         G5: "G5.mp3",
+        C3: "C3.mp3",
+        C4: "C4.mp3",
+        E3: "E3.mp3",
+        E4: "E4.mp3"
 	},
 	baseUrl: "samples/piano/",
 }).toDestination();
@@ -47,9 +51,14 @@ const celloSampler = new Tone.Sampler({
 		G2: "G2.mp3",
 		G3: "G3.mp3",
 		G4: "G4.mp3",
+        C3: "C3.mp3",
+        C4: "C4.mp3",
+        E3: "E3.mp3",
+        E4: "E4.mp3"
 	},
 	baseUrl: "samples/cello/",
 }).toDestination();
+
 
 const intToNote = {
     0: 'G5',
