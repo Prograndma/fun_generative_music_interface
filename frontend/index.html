@@ -1316,7 +1316,8 @@
                 <h2>Populate Music</h2>
                 <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <!--<button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
+                <button class= "imgbutton" onclick="writeMelody()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton selected" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" id="minor" onclick="majorMode(false)"><img src="img/sad.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
@@ -1326,11 +1327,12 @@
                 <button id="synthButton" class= "imgbutton selected" onclick="setInstrument('synth')"><img src="img/robot.png" draggable="false" (dragstart)="false;" alt="picture of a robot"/></button>
                 <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
                 <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
 
             </div>
             <h3>Tempo</h3>
             <div id="slidecontainer">
-                <p>30 </p><input type="range" min="30" max="180" value="100" class="slider" id="tempoSlider"onchange="getTempo()"><p> 180</p>
+                <p>30 </p><input type="range" min="60" max="360" value="200" class="slider" id="tempoSlider"onchange="getTempo()"><p> 180</p>
               </div>
             <h3>Generate More Music</h3>
               <button class="normalbutton" onclick="sendGenerateRequest()">Generate!</button>
@@ -1425,7 +1427,6 @@
             }
         }
 
-        var bigram_model = new NgramModel(2, bigramData);
         var trigram_model = new NgramModel(3, trigramData);
 
         function generateSample(model_to_use){

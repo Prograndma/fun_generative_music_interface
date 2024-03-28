@@ -59,6 +59,20 @@ const celloSampler = new Tone.Sampler({
 	baseUrl: "samples/cello/",
 }).toDestination();
 
+const saxSampler = new Tone.Sampler({
+	urls: {
+		G2: "G2.mp3",
+		G3: "G3.mp3",
+		G4: "G4.mp3",
+        C3: "C3.mp3",
+        C4: "C4.mp3",
+        E3: "E3.mp3",
+        E4: "E4.mp3"
+	},
+	baseUrl: "samples/saxophone/",
+}).toDestination();
+
+
 
 const intToNote = {
     0: 'G5',
@@ -645,6 +659,9 @@ function setInstrument(instrument){
     }else if(instrument=='piano'){
         pianoButton.classList.add('selected');
         synth = pianoSampler;
+    }else if(instrument=='sax'){
+        saxButton.classList.add('selected');
+        synth = saxSampler;
     }else{
         synthButton.classList.add('selected');
         synth = sineSynth;
@@ -679,7 +696,7 @@ function smoothGrid(){
     var rows = getRows();
     for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].children;
-        for (var j = 0; j < rows.length; j++){
+        for (var j = 0; j < cells.length; j++){
             if(cells[j].classList.contains("painted")){
                 smoothNote(cells[j]);
             }
@@ -704,6 +721,85 @@ document.body.addEventListener('keydown', function (event) {
             break;
     }
 });
+
+const majorScale = [0, 2, 4, 5, 7, 9, 11];
+const minorScale = [0, 2, 3, 5, 7, 8, 11];
+
+function getKey(min=8,max=19){
+    const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive      
+}
+
+function getNoteLength(){
+    var randomNum = Math.random();
+    if(randomNum < .33){
+        return 2;
+    }else if(randomNum <.66){
+        return 1;
+    }else if(randomNum < .85){
+        return 4;
+    }else{
+        return 3;
+    }
+}
+
+function getOffset(){
+    var randomNum = Math.random();
+    if(randomNum < .2){
+        return 0;
+    }else if(randomNum <.4){
+        return 4;
+    }else if(randomNum < .55){
+        return 2;
+    }else if(randomNum < .7){
+        return 3;
+    }else if(randomNum < .85){
+        return 5;
+    }else if(randomNum < .925){
+        return 1;
+    }else{
+        return 6;
+    }
+}
+
+function writeMelody(){
+    clearGrid();
+    var scale;
+    if(major){
+        scale= majorScale;
+    }else{
+        scale = minorScale;
+    }
+    //get starting pitch
+    var startingPitch = getKey(13,24);
+    //start writing at index 0;
+    currentIdx = 0;
+    var grid = []
+    while(currentIdx < pianoRollLength){
+        //sample a note length
+        var noteLength =getNoteLength();
+        if((currentIdx + noteLength) > pianoRollLength){
+            noteLength = pianoRollLength - currentIdx;
+        }
+        //sample a pitch
+        var offset = getOffset();
+        var pitch = intToNote[startingPitch - scale[offset]];
+        var note  = [pitch, noteLength]
+        grid.push([note]);
+        if(noteLength > 1){
+            for (var i = 0; i < noteLength-1; i++) {
+                grid.push([]);
+            }
+        }
+        currentIdx+=noteLength;
+    }
+    populateGrid(grid);
+
+}
+
+
+
 
 function sendGenerateRequest() {
     //get contents of grid
