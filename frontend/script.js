@@ -51,20 +51,25 @@ const celloSampler = new Tone.Sampler({
 		G2: "G2.mp3",
 		G3: "G3.mp3",
 		G4: "G4.mp3",
+		G5: "G5.mp3",
+        C2: "C2.mp3",
         C3: "C3.mp3",
         C4: "C4.mp3",
+        C5: "C5.mp3",
+        E2: "E2.mp3",
         E3: "E3.mp3",
-        E4: "E4.mp3"
+        E4: "E4.mp3",
+        E5: "E5.mp3"
 	},
 	baseUrl: "samples/cello/",
 }).toDestination();
 
 const saxSampler = new Tone.Sampler({
 	urls: {
-		G2: "G2.mp3",
+        G2: "G2.mp3",
+		G5: "G5.mp3",
 		G3: "G3.mp3",
 		G4: "G4.mp3",
-        C3: "C3.mp3",
         C4: "C4.mp3",
         E3: "E3.mp3",
         E4: "E4.mp3"
@@ -72,6 +77,20 @@ const saxSampler = new Tone.Sampler({
 	baseUrl: "samples/saxophone/",
 }).toDestination();
 
+const fluteSampler = new Tone.Sampler({
+	urls: {
+        A4: "A4.mp3",
+		C4: "C4.mp3",
+		E4: "E4.mp3",
+		A5: "A5.mp3",
+        C5: "C5.mp3",
+        E5: "E5.mp3",
+        A6: "A6.mp3",
+        C6: "C6.mp3",
+        E6: "E6.mp3"
+    },
+	baseUrl: "samples/flute/",
+}).toDestination();
 
 
 const intToNote = {
@@ -509,60 +528,6 @@ function populateGrid(input){
     }
 }
 
-var exampleMusic =[['C4', 'E4', 'G4', 'C5'],
-['B3', 'D4', 'G4'],
-['A3', 'C4', 'G4', 'A4'],
-['G3', 'D4', 'G4', 'B4'],
-['E3', 'E4', 'G4', 'C5'],
-['D3', 'F4', 'B4', 'D5'],
-['G#2', 'E4', 'B4', 'E5'],
-['A2', 'E4', 'A4', 'C5'],
-['A3', 'A4', 'C5', 'E5'],
-['B3', 'G4', 'D5', 'G5'],
-['G3', 'D4', 'B4', 'G5'],
-['C4', 'D4', 'G4', 'E5'],
-['E3', 'C4', 'G4', 'G5'],
-['D3', 'C4', 'A4', 'F5'],
-['G3', 'B3', 'G4', 'F5'],
-['C3', 'C4', 'G4', 'E5']]
-
-var twinkle = [[ "C4", "C3" ],
-[ "C4", "C3" ],
-[ "G4", "E3" ],
-[ "G4", "E3" ],
-[ "A4", "F3" ],
-[ "A4", "F3" ],
-[ "G4", "E3" ],
-[],
-[ "F4", "D3" ],
-[ "F4", "D3" ],
-[ "E4", "C3" ],
-[ "E4", "C3" ],
-[ "D4", "B2" ],
-[ "D4", "G2" ],
-[ "C4", "C3" ],
-[]]
-
-var mario = [
-    ["E3", "E4"],
-    ["E3", "E4"],
-    ["E3", "E4"],
-    ["C3", "C4"],
-    ["E3", "E4"],
-    ["G3", "G4"],
-    ["G2", "G3"],
-    [],
-    ["C3", "C4"],
-    ["G2", "G3"],
-    ["E3"],    
-    [], 
-    ["A3", "A2"],
-    ["B3", "B2"],
-    ["A#3", "A#2"],
-    ["A3", "A2"],
-
-]
-
 function readRow(row){
     var outArray = [];
     var children = row.children;
@@ -650,8 +615,13 @@ function setInstrument(instrument){
     var celloButton = document.getElementById('celloButton');
     var pianoButton = document.getElementById('pianoButton');
     var synthButton = document.getElementById('synthButton');
+    var saxButton = document.getElementById('saxButton');
+    var fluteButton = document.getElementById('fluteButton');
+
     celloButton.classList.remove('selected');
     pianoButton.classList.remove('selected');
+    saxButton.classList.remove('selected');
+    fluteButton.classList.remove('selected');
     synthButton.classList.remove('selected');
     if(instrument=='cello'){
         celloButton.classList.add('selected');
@@ -662,6 +632,9 @@ function setInstrument(instrument){
     }else if(instrument=='sax'){
         saxButton.classList.add('selected');
         synth = saxSampler;
+    }else if(instrument=='flute'){
+        fluteButton.classList.add('selected');
+        synth = fluteSampler;
     }else{
         synthButton.classList.add('selected');
         synth = sineSynth;

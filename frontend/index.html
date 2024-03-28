@@ -1314,11 +1314,13 @@
 
             <div id="populate-buttons">
                 <h2>Populate Music</h2>
-                <!--<button onclick="generateTypes('bigram')">Populate (more random)</button>-->
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <!--<button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
                 <button class= "imgbutton" onclick="writeMelody()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+            </div>
+            <div id="toggles">
+                <h2>Controls</h2>
                 <button class= "imgbutton selected" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" id="minor" onclick="majorMode(false)"><img src="img/sad.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
@@ -1328,6 +1330,7 @@
                 <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
                 <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button id="fluteButton" class= "imgbutton" onclick="setInstrument('flute')"><img src="img/flute.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
 
             </div>
             <h3>Tempo</h3>
