@@ -135,40 +135,55 @@ const intToNote = {
 
 const noteToInt = {
     'G5': 0,
+    'Gb5': 1,
     'F#5': 1,
     'F5': 2,
     'E5': 3,
+    'Eb5': 4,
     'D#5': 4,
     'D5': 5,
+    'Db5': 6,
     'C#5': 6,
     'C5': 7,
     'B4': 8,
+    'Bb4': 9,
     'A#4': 9,
     'A4': 10,
+    'Ab4': 11,
     'G#4': 11,
     'G4': 12,
+    'Gb4': 13,
     'F#4': 13,
     'F4': 14,
     'E4': 15,
+    'Eb4': 16,
     'D#4': 16,
     'D4': 17,
+    'Db4': 18,
     'C#4': 18,
     'C4': 19,
     'B3': 20,
+    'Bb3': 21,
     'A#3': 21,
     'A3': 22,
+    'Ab3': 23,
     'G#3': 23,
     'G3': 24,
+    'Gb3': 25,
     'F#3': 25,
     'F3': 26,
     'E3': 27,
+    'Eb3': 28,
     'D#3': 28,
     'D3': 29,
+    'Db3': 30,
     'C#3': 30,
     'C3': 31,
     'B2': 32,
+    'Bb2': 33,
     'A#2': 33,
     'A2': 34,
+    'Ab2': 35,
     'G#2': 35,
     'G2': 36,
 };
@@ -541,6 +556,20 @@ function readRow(row){
     return outArray;
 }
 
+function shiftArr(arr){
+    for (let i = 0; i < arr.length; i++){
+       var noteLen=arr[i][0][1];
+        if(noteLen>1){
+            var remainingLen = noteLen-1;
+            for (let j = 0; j < remainingLen; j++){
+                arr.splice(i+1, 0, []);
+                i++;
+            }
+        }
+    }
+    return arr;
+}
+
 function getInfoFromGrid(){
     var rows = getRows();
     var outArray = [];
@@ -695,83 +724,21 @@ document.body.addEventListener('keydown', function (event) {
     }
 });
 
-const majorScale = [0, 2, 4, 5, 7, 9, 11];
-const minorScale = [0, 2, 3, 5, 7, 8, 11];
-
-function getKey(min=8,max=19){
+function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min);
-        const maxFloored = Math.floor(max);
-        return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive      
-}
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+  }
 
-function getNoteLength(){
-    var randomNum = Math.random();
-    if(randomNum < .33){
-        return 2;
-    }else if(randomNum <.66){
-        return 1;
-    }else if(randomNum < .85){
-        return 4;
-    }else{
-        return 3;
-    }
-}
-
-function getOffset(){
-    var randomNum = Math.random();
-    if(randomNum < .2){
-        return 0;
-    }else if(randomNum <.4){
-        return 4;
-    }else if(randomNum < .55){
-        return 2;
-    }else if(randomNum < .7){
-        return 3;
-    }else if(randomNum < .85){
-        return 5;
-    }else if(randomNum < .925){
-        return 1;
-    }else{
-        return 6;
-    }
-}
-
-function writeMelody(){
-    clearGrid();
-    var scale;
+  function writeMelody(){
     if(major){
-        scale= majorScale;
+        generateSample("major");
     }else{
-        scale = minorScale;
+        generateSample("minor");
     }
-    //get starting pitch
-    var startingPitch = getKey(13,24);
-    //start writing at index 0;
-    currentIdx = 0;
-    var grid = []
-    while(currentIdx < pianoRollLength){
-        //sample a note length
-        var noteLength =getNoteLength();
-        if((currentIdx + noteLength) > pianoRollLength){
-            noteLength = pianoRollLength - currentIdx;
-        }
-        //sample a pitch
-        var offset = getOffset();
-        var pitch = intToNote[startingPitch - scale[offset]];
-        var note  = [pitch, noteLength]
-        grid.push([note]);
-        if(noteLength > 1){
-            for (var i = 0; i < noteLength-1; i++) {
-                grid.push([]);
-            }
-        }
-        currentIdx+=noteLength;
-    }
-    populateGrid(grid);
-
+    var shift = getRandomInt(0,6);
+    transposeGrid(-shift); 
 }
-
-
 
 
 function sendGenerateRequest() {
