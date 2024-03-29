@@ -626,6 +626,16 @@ function updateNoteLength(){
 }
 
 
+function getRandomElement(array) {
+    // Generate a random index within the range of the array's length
+    const randomIndex = Math.floor(Math.random() * array.length);
+    
+    // Return the element at the random index
+    return array[randomIndex];
+  }
+
+
+
 function majorMode(input){
     var majorButton =  document.getElementById("major");
     var minorButton =  document.getElementById("minor");

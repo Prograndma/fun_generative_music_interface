@@ -1316,7 +1316,8 @@
                 <h2>Populate Music</h2>
                 <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <!--<button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
-                <button class= "imgbutton" onclick="writeMelody()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <!--<button class= "imgbutton" onclick="writeMelody()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
+                <button class= "imgbutton" onclick="generateFromBars()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
             <div id="toggles">
@@ -1343,8 +1344,36 @@
     </div>
     <script src="http://unpkg.com/tone"></script>
     <script src="data.js"></script>
+    <script src="bars.js"></script>
+
     <script src="script.js"></script>
    <script>
+
+        function generateFromBars(){
+            var grid = [];
+            var data;
+            var minorButton = document.getElementById("minor");
+            if(minorButton.classList.contains("selected")){
+                data=minorBars;
+            }else{
+                data=majorBars;
+            }
+            bar1 = shiftArr(getRandomElement(data));
+            bar2 = shiftArr(getRandomElement(data));
+            bar3 = shiftArr(getRandomElement(data));
+            bar4 = shiftArr(getRandomElement(data));
+            var bars = [bar1,bar2,bar3, bar4]
+            for (let i = 0; i < bars.length; i++) {
+                for (let j = 0; j < bars[i].length; j++) {
+                    // Append the current item to the destination array
+                    grid.push(bars[i][j]);
+                }
+            }
+            console.log(grid);
+            populateGrid(grid);
+        }
+
+
         class NgramModel {
             constructor(n, data) {
                 this.n = n;
@@ -1427,81 +1456,13 @@
                     }
                 }
                 return text.slice(0,-1).trim();
-            }
-
-            random_melody(token_count) {
-                var text = '';
-                var starting_context = [];
-                for (let i = 0; i < this.n-1; i++) {
-                    starting_context.push("<START> ");
-                }
-                var context = starting_context;
-                for (let i = 0; i < token_count; i++) {
-                    var token = context.join('').trim();
-                    var new_token = this.random_token(token);
-                    if (new_token===undefined){
-                        return text.trim();
-                    }
-                    new_token = new_token.trim();
-                    if (new_token == "<END>"){
-                        return text.trim();
-                    }
-                    if (new_token===undefined){
-                        return text.trim();
-                    }                    
-                    if(new_token.charAt(new_token-1) != ' '){
-                        new_token+=', ';
-                    }
-                    text += new_token;
-                    context = context.slice(-(this.n-1));
-                    if (this.n == 1) {
-                        context = [];
-                    }
-                }
-                return text.slice(0,-2).trim();
-            }        
+            }   
         }
 
-        var minor_model = new NgramModel(3, minor);
-        var major_model = new NgramModel(3, majorData);
         var trigram_model = new NgramModel(3, trigramData);
 
         function generateSample(model_to_use){
-            if (model_to_use == "minor"){
-                output = "["+minor_model.random_melody(32)+"]";
-                // Parse the string into a nested array
-                var nestedArray = JSON.parse(output.replace(/'/g, '"'));
-                // Convert inner strings representing numbers to actual numbers
-                var parsedArray = nestedArray.map(innerArray => {
-                    return innerArray.map(item => {
-                        if (!isNaN(item)) {
-                            return parseInt(item);
-                        } else {
-                            return item;
-                        }
-                    });
-                });
-                populateGrid(shiftArr(parsedArray));
-                return;
-            }else if (model_to_use == "major"){
-                output = "["+major_model.random_melody(32)+"]";
-                // Parse the string into a nested array
-                var nestedArray = JSON.parse(output.replace(/'/g, '"'));
-                // Convert inner strings representing numbers to actual numbers
-                var parsedArray = nestedArray.map(innerArray => {
-                    return innerArray.map(item => {
-                        if (!isNaN(item)) {
-                            return parseInt(item);
-                        } else {
-                            return item;
-                        }
-                    });
-                });
-                populateGrid(shiftArr(parsedArray));
-                return;
-            }else{
-                output = trigram_model.random_text(32);
-            }
+            output = trigram_model.random_text(32);
             var arrayStrings = output.split(' ');
             var outArray = [];
             for (let i = 0; i < arrayStrings.length; i++) {
