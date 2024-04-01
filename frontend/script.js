@@ -383,6 +383,7 @@ function setPlayButton(stop){
 
 function getTempo(){
     tempo = document.getElementById("tempoSlider").value;
+    console.log(tempo);
 }
 
 function convertTempoToDuration(){
@@ -629,7 +630,6 @@ function updateNoteLength(){
 function getRandomElement(array) {
     // Generate a random index within the range of the array's length
     const randomIndex = Math.floor(Math.random() * array.length);
-    
     // Return the element at the random index
     return array[randomIndex];
   }
@@ -740,7 +740,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
   }
 
-  function writeMelody(){
+function writeMelody(){
     if(major){
         generateSample("major");
     }else{
@@ -748,6 +748,15 @@ function getRandomInt(min, max) {
     }
     var shift = getRandomInt(0,6);
     transposeGrid(-shift); 
+}
+function setTempo(temp){
+    tempo = temp;
+    document.getElementById("tempoSlider").value = temp;
+}
+
+function tmp(){
+    var arr = getInfoFromGrid();
+    return JSON.stringify(arr);
 }
 
 

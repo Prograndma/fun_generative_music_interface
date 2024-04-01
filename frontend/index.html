@@ -1314,11 +1314,11 @@
 
             <div id="populate-buttons">
                 <h2>Populate Music</h2>
-                <button class= "imgbutton" onclick="populateGrid(twinkle)"><img src="img/star.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="populateRandomSong()"><img src="img/slot.png" draggable="false" (dragstart)="false;" alt="emoji of a slot machine"/></button>
                 <!--<button class= "imgbutton" onclick="populateGrid(mario)"><img src="img/mario.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
                 <!--<button class= "imgbutton" onclick="writeMelody()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>-->
-                <button class= "imgbutton" onclick="generateFromBars()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button class= "imgbutton" onclick="generateFromBarsSequential()"><img src="img/tux.png" draggable="false" (dragstart)="false;" alt="emoji of a composer"/></button>
+                <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="A robot dressed as a baroque composer"/></button>
             </div>
             <div id="toggles">
                 <h2>Controls</h2>
@@ -1329,9 +1329,9 @@
                 <h2>Instruments</h2>
                 <button id="synthButton" class= "imgbutton selected" onclick="setInstrument('synth')"><img src="img/robot.png" draggable="false" (dragstart)="false;" alt="picture of a robot"/></button>
                 <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
-                <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
-                <button id="fluteButton" class= "imgbutton" onclick="setInstrument('flute')"><img src="img/flute.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
+                <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="Cello emoji"/></button>
+                <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="saxophone emoji"/></button>
+                <button id="fluteButton" class= "imgbutton" onclick="setInstrument('flute')"><img src="img/flute.png" draggable="false" (dragstart)="false;" alt="flute emoji"/></button>
 
             </div>
             <h3>Tempo</h3>
@@ -1345,10 +1345,12 @@
     <script src="http://unpkg.com/tone"></script>
     <script src="data.js"></script>
     <script src="bars.js"></script>
+    <script src="songs.js"></script>
 
     <script src="script.js"></script>
    <script>
-
+        var majorIdx = 0;
+        var minorIdx = 0;
         function generateFromBars(){
             var grid = [];
             var data;
@@ -1369,8 +1371,57 @@
                     grid.push(bars[i][j]);
                 }
             }
-            console.log(grid);
             populateGrid(grid);
+        }
+        function generateFromBarsSequential(){
+            var grid = [];
+            var data;
+            var minorButton = document.getElementById("minor");
+            if(minorButton.classList.contains("selected")){
+                data=minorBars;
+            }else{
+                data=majorBars;
+            }
+            var idx = Math.floor(Math.random() * data.length);
+            if(idx >= data.length-4){
+                idx = idx-4;
+            }
+            bar1 = shiftArr(data[idx]);
+            bar2 = shiftArr(data[idx+1]);
+            bar3 = shiftArr(data[idx+2]);
+            bar4 = shiftArr(data[idx+3]);
+            var bars = [bar1,bar2,bar3, bar4]
+            for (let i = 0; i < bars.length; i++) {
+                for (let j = 0; j < bars[i].length; j++) {
+                    // Append the current item to the destination array
+                    grid.push(bars[i][j]);
+                }
+            }
+            populateGrid(grid);
+        }
+        function populateRandomSong(){
+            var minorButton = document.getElementById("minor");
+            var data;
+            var song;
+            if(minorButton.classList.contains("selected")){
+                song = minorSongs[minorIdx];
+                data=minorSongs;
+                setTempo(song[0]);
+                populateGrid(song[1]);
+                minorIdx++;
+                if(minorIdx==data.length){
+                    minorIdx=0;
+                }
+            }else{
+                song = majorSongs[majorIdx];
+                data=majorSongs;
+                setTempo(song[0]);
+                populateGrid(song[1]);
+                majorIdx++;
+                if(majorIdx==data.length){
+                    majorIdx=0;
+                }
+            }       
         }
 
 
