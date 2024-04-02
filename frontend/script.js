@@ -92,6 +92,21 @@ const fluteSampler = new Tone.Sampler({
 	baseUrl: "samples/flute/",
 }).toDestination();
 
+const pluckSampler = new Tone.Sampler({
+	urls: {
+		G3: "G3.mp3",
+        A3: "A3.mp3",
+		C3: "C3.mp3",
+		E3: "E3.mp3",
+        G4: "G4.mp3",
+        A4: "A4.mp3",
+		C4: "C4.mp3",
+		E4: "E4.mp3",
+		C5: "C5.mp3"
+    },
+	baseUrl: "samples/guitar/",
+}).toDestination();
+
 
 const intToNote = {
     0: 'G5',
@@ -656,12 +671,15 @@ function setInstrument(instrument){
     var synthButton = document.getElementById('synthButton');
     var saxButton = document.getElementById('saxButton');
     var fluteButton = document.getElementById('fluteButton');
+    var pluckButton = document.getElementById('pluckButton');
 
     celloButton.classList.remove('selected');
     pianoButton.classList.remove('selected');
     saxButton.classList.remove('selected');
     fluteButton.classList.remove('selected');
     synthButton.classList.remove('selected');
+    pluckButton.classList.remove('selected');
+
     if(instrument=='cello'){
         celloButton.classList.add('selected');
         synth = celloSampler;
@@ -674,6 +692,9 @@ function setInstrument(instrument){
     }else if(instrument=='flute'){
         fluteButton.classList.add('selected');
         synth = fluteSampler;
+    }else if(instrument=='pluck'){
+        pluckButton.classList.add('selected');
+        synth = pluckSampler;
     }else{
         synthButton.classList.add('selected');
         synth = sineSynth;
