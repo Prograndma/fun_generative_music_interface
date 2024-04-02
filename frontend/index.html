@@ -1306,11 +1306,11 @@
             </div>
         </div>
         <div id="button-holder">
-            <div id="note-length"><button onclick="decrementNoteLength()">-</button> <div id="num">2</div><button onclick="incrementNoteLength()">+</button></div>
             <button class= "normalbutton" onclick="playMusic()"id="playButton">Play!</button>
             <button class= "normalbutton" onclick="clearButton()">Clear</button>
             <button class= "normalbutton" onclick="transposeGrid(1)">Shift up</button>
             <button class= "normalbutton" onclick="transposeGrid(-1)">Shift down</button>
+            <div id="note-length"><h4>Change Note Length:</h4><button class="increment-button" onclick="decrementNoteLength()">-</button> <div id="num">2</div><button class="increment-button" onclick="incrementNoteLength()">+</button></div>
 
             <div id="populate-buttons">
                 <h2>Populate Music</h2>
@@ -1321,19 +1321,20 @@
                 <button class= "imgbutton" onclick="generateSample('trigram')"><img src="img/composer.png" draggable="false" (dragstart)="false;" alt="A robot dressed as a baroque composer"/></button>
             </div>
             <div id="toggles">
-                <h2>Controls</h2>
+                <h2>Mood Control</h2>
                 <button class= "imgbutton selected" id="major" onclick="majorMode(true)"><img src="img/happy.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
                 <button class= "imgbutton" id="minor" onclick="majorMode(false)"><img src="img/sad.png" draggable="false" (dragstart)="false;" alt="buttonpng"/></button>
             </div>
             <div id="Instruments">
                 <h2>Instruments</h2>
-                <button id="synthButton" class= "imgbutton selected" onclick="setInstrument('synth')"><img src="img/robot.png" draggable="false" (dragstart)="false;" alt="picture of a robot"/></button>
-                <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
-                <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="Cello emoji"/></button>
-                <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="saxophone emoji"/></button>
-                <button id="fluteButton" class= "imgbutton" onclick="setInstrument('flute')"><img src="img/flute.png" draggable="false" (dragstart)="false;" alt="flute emoji"/></button>
-                <button id="pluckButton" class= "imgbutton" onclick="setInstrument('pluck')"><img src="img/banjo.png" draggable="false" (dragstart)="false;" alt="banjo emoji"/></button>
-
+                <div id="instrument-holder">
+                    <button id="synthButton" class= "imgbutton selected" onclick="setInstrument('synth')"><img src="img/robot.png" draggable="false" (dragstart)="false;" alt="picture of a robot"/></button>
+                    <button id="pianoButton" class= "imgbutton" onclick="setInstrument('piano')"><img src="img/piano.png" draggable="false" (dragstart)="false;" alt="picture of a keyboard"/></button>
+                    <button id="celloButton" class= "imgbutton" onclick="setInstrument('cello')"><img src="img/violin.png" draggable="false" (dragstart)="false;" alt="Cello emoji"/></button>
+                    <button id="saxButton" class= "imgbutton" onclick="setInstrument('sax')"><img src="img/sax.png" draggable="false" (dragstart)="false;" alt="saxophone emoji"/></button>
+                    <button id="fluteButton" class= "imgbutton" onclick="setInstrument('flute')"><img src="img/flute.png" draggable="false" (dragstart)="false;" alt="flute emoji"/></button>
+                    <button id="pluckButton" class= "imgbutton" onclick="setInstrument('pluck')"><img src="img/banjo.png" draggable="false" (dragstart)="false;" alt="banjo emoji"/></button>
+                </div>
             </div>
             <h3>Tempo</h3>
             <div id="slidecontainer">

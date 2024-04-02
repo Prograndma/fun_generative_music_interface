@@ -56,7 +56,27 @@ body{
     justify-content: center;
     align-items: center;
 }
+#num{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#note-length{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.increment-button{
+    height: 25px;
+    cursor: pointer;
+    appearance: none;
+    border:2px solid rgb(49, 49, 88);
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 2px;
+    margin:2px;
+}
 
 .painted {
     background-color: #000;
@@ -272,6 +292,11 @@ button img{
     -ms-user-select: none;
 }
 
+#instrument-holder{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .cell-contents{
     height:100%;
     width:100%;
@@ -280,4 +305,10 @@ button img{
 
 .selected{
     background-color: #acd1d1;
+}
+
+h2{
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+
 }
