@@ -1,5 +1,6 @@
 # pip install midi
 from midiutil.MidiFile import MIDIFile
+import os
 
 START_OF_ARRAY = 41     # Bottom G note. 
 TOP_OF_ARRAY = 79       # Top G note. 
@@ -24,13 +25,9 @@ octave = {
 }
 
 def string_parse(in_str):
-    duration = 1
+    duration = in_str[1]
+    in_str = in_str[0]
     str_location = 0
-    if in_str[str_location].isdigit():
-        if in_str[str_location + 1].isdigit():
-            raise Exception("Cant sustain notes that long, for now.")
-        duration = int(in_str[0])
-        str_location += 1
 
     start = note[in_str[str_location]]
     str_location += 1
@@ -50,20 +47,28 @@ def string_parse(in_str):
     return duration, start
 
 def populate_midi(notes, tempo):
+    path = "output.midi"
     mf = MIDIFile(1)     # only 1 track
     track = 0   # the only track
     time = 0    # start at the beginning
     channel = 0
     volume = 100
     tempo = int(tempo)
-
     mf.addTrackName(track, time, "Sample Track")
     mf.addTempo(track, time, tempo)
     for note_time, pitches in enumerate(notes):
         for pitch in pitches:
             duration, note_value = string_parse(pitch)
             mf.addNote(track, channel, note_value, note_time, duration, volume)
+    
+    descriptor = os.open(path=path, 
+                         flags=(
+                             os.O_WRONLY 
+                             | os.O_CREAT
+                             | os.O_TRUNC
+                         ),
+                         mode=0o777)
 
-    with open("output.midi", 'wb') as outf:
+    with open(descriptor, 'wb') as outf:
         mf.writeFile(outf)
     return "output.midi"
