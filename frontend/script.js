@@ -572,6 +572,19 @@ function readRow(row){
     return outArray;
 }
 
+function readRowNums(row){
+    var outArray = [];
+    var children = row.children;
+    for (let i = 0; i < children.length; i++){
+        var child = children[i];
+        if(child.classList.contains('start')){
+            var length = child.children[0].innerHTML;
+            outArray.push([i, length]);
+        }
+    }
+    return outArray;
+}
+
 function shiftArr(arr){
     for (let i = 0; i < arr.length; i++){
        var noteLen=arr[i][0][1];
@@ -591,6 +604,15 @@ function getInfoFromGrid(){
     var outArray = [];
     for (let i = 0; i < pianoRollLength; i++) {
         newRow = readRow(rows[i]);
+        outArray.push(newRow);
+    }
+    return outArray;
+}
+function getNumsFromGrid(){
+    var rows = getRows();
+    var outArray = [];
+    for (let i = 0; i < pianoRollLength; i++) {
+        newRow = readRowNums(rows[i]);
         outArray.push(newRow);
     }
     return outArray;
@@ -783,7 +805,7 @@ function tmp(){
 
 function sendGenerateRequest() {
     //get contents of grid
-    var notesToSend = getInfoFromGrid();            // Need to create a new function that puts the duration at the beginning of the note. For backend purposes. 
+    var notesToSend = getNumsFromGrid();            // Need to create a new function that puts the duration at the beginning of the note. For backend purposes. 
     axios.post("http://127.0.0.1:5000", {name: "song", songTempo: tempo, notes: notesToSend}).then(function (response) {
         console.log(response)
     })
