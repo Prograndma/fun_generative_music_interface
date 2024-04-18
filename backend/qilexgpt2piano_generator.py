@@ -1,7 +1,7 @@
 
 import torch
 
-# pip install miditok=2.1.5 VERY IMPORTANT
+# pip install miditok=2.1.8 VERY IMPORTANT
 from miditok import REMI
 
 from transformers import GPT2LMHeadModel
