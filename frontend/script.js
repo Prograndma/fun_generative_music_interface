@@ -6,6 +6,7 @@ var noteLength = 2;
 var maxNoteLength = 12;
 const pianoRollHeight = 36;
 const pianoRollLength = 32;
+const quarterNoteTicks = 384;
 var prevMidiSignal = "Seq";
 // var MidiPlayer = require('midi-player-js')
 
@@ -511,6 +512,28 @@ function playRows(objectList) {
     processObjectsSequentially();
 }
 
+function playTimeStampedNotes(timeStampedNotes) {
+    
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    async function processNotes() {
+        let currentTick = 0
+        for (const note of timeStampedNotes) {
+            if (note.startTime != currentTick) {
+                let waitDuration = note.startTime - currentTick
+                await delay(convertTempoToDuration(tempo) * (waitDuration / quarterNoteTicks) * 1000)
+                currentTick = note.startTime
+            }
+            console.log(note.noteName, note.duration)
+            synth.triggerAttackRelease(note.noteName, convertTempoToDuration(tempo) * ((note.duration  / 2) / quarterNoteTicks))
+
+        }
+    }
+    console.log(timeStampedNotes)
+    processNotes();
+}
+
 
 function playChord(chord){
     if (chord.length > 0) {
@@ -832,6 +855,31 @@ function tmp(){
     return JSON.stringify(arr);
 }
 
+function turnEventsIntoTimeStampedNoteDurations(events) {
+    let durations = [];
+
+    events.forEach(event => {
+        if (event.name == "Note on") {
+            let currentIndex = events.indexOf(event)
+            let nextEvent = events[currentIndex]
+            let foundEnding = false
+            for (let i = currentIndex + 1; i < events.length; i++) {
+                if (events[i].noteName === event.noteName && events[i].name === "Note off") {
+                    nextEvent = events[i]
+                    foundEnding = true
+                    break
+                }
+            }
+            if (foundEnding) {
+                durations.push({startTime: event.tick, duration: nextEvent.tick - event.tick, noteName: event.noteName})
+            }
+        }
+        
+    });
+    durations.sort((a, b) => a.startTime - b.startTime)
+    return durations
+}
+
 
 function sendGenerateRequest() {
     //get contents of grid
@@ -841,7 +889,11 @@ function sendGenerateRequest() {
     axios.post("http://127.0.0.1:5000/", {name: "song", songTempo: tempo, notes: notesToSend}, {responseType: "arraybuffer"}).then(function (response) {        
     console.log("received response")
     midi = response.data
-    Window.Player.loadArrayBuffer(midi).play()
+    var events = Window.Player.loadArrayBuffer(midi).getEvents()
+    console.log(events[1])
+    timeStampedNoteDurations = turnEventsIntoTimeStampedNoteDurations(events[1])
+    console.log(timeStampedNoteDurations)
+    playTimeStampedNotes(timeStampedNoteDurations)
     // Window.Player.stop()
     // Window.Player.setTempo(tempo)
     // Window.Player.play()
