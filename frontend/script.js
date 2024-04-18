@@ -345,9 +345,9 @@ function eraseCell(event) {
             started = true;
         }
         var idx = getIndexInRow(tgt);
-        var siblings = getNextNSiblings(tgt.parentElement, noteLength);
+        var siblings = getNextNSiblings(tgt.parentElement, maxNoteLength);
         //traverse right for duration of note
-        for (var i = 0; i < maxNoteLength-1; i++) {
+        for (var i = 0; i < maxNoteLength; i++) {
             if(i<siblings.length){
                 //check if next sibling is a continue
                 if(siblings[i].childNodes[idx].classList.contains('painted')&&!siblings[i].childNodes[idx].classList.contains('start')){
@@ -361,7 +361,7 @@ function eraseCell(event) {
         //traverse left if we didn't hit the start of the note 
         if(!started){
             var previousSiblings = getLastNSiblings(tgt.parentElement, maxNoteLength);
-            for (var i = 0; i < maxNoteLength-1; i++) {
+            for (var i = 0; i < maxNoteLength; i++) {
                 if(i<previousSiblings.length){
                     //check if next sibling is a continue
                     if(previousSiblings[i].childNodes[idx].classList.contains('painted')&&previousSiblings[i].childNodes[idx].classList.contains('continue')){
@@ -429,7 +429,6 @@ function setPlayButton(stop){
 
 function getTempo(){
     tempo = document.getElementById("tempoSlider").value;
-    console.log(tempo);
 }
 
 function convertTempoToDuration(){
@@ -788,6 +787,7 @@ function smoothNote(note){
                 //remove start
                 if(siblings[i].childNodes[idx].classList.contains('start')){
                     siblings[i].childNodes[idx].classList.remove('start');
+                    siblings[i].childNodes[idx].classList.add('continue');
                 }
                 length++;
                 siblings[i].childNodes[idx].innerHTML = '<div class="cell-contents"></div>';
