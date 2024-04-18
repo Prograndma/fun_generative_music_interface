@@ -27,8 +27,8 @@ class MidiGenerator():
                                            top_p=0.9,
                                            pad_token_id=self.tokenizer['PAD_None'])
         midi_result = self.tokenizer(continuation.cpu())
-        midi_result.dump('continuation.midi')
-        return "continuation.midi"
+        midi_result.dump('continuation.mid')
+        return "continuation.mid"
 
 # device = torch.device(0)
 # model.to(device)

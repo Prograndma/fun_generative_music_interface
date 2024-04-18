@@ -47,7 +47,7 @@ def string_parse(in_str):
     return duration, start
 
 def populate_midi(notes, tempo):
-    path = "output.midi"
+    path = "output.mid"
     mf = MIDIFile(1)     # only 1 track
     track = 0   # the only track
     time = 0    # start at the beginning
@@ -71,4 +71,4 @@ def populate_midi(notes, tempo):
 
     with open(descriptor, 'wb') as outf:
         mf.writeFile(outf)
-    return "output.midi"
+    return path
