@@ -6,6 +6,36 @@ var noteLength = 2;
 var maxNoteLength = 12;
 const pianoRollHeight = 36;
 const pianoRollLength = 32;
+var prevMidiSignal = "Seq";
+// var MidiPlayer = require('midi-player-js')
+
+Window.Player = new MidiPlayer.Player(function(event) {
+    console.log(event);
+    if (event.track == 2) {
+        if (event.name == "Sequence/Track Name") {
+            if (prevMidiSignal == "Seq") {
+            prevMidiSignal = "Note";
+            } else {
+                prevMidiSignal = "Seq";
+                Window.Player.stop()
+                synth.triggerRelease();
+            };
+        } 
+
+        if (event.name == "Note on") {
+            synth.triggerAttack(event.noteName, "+0.0", event.velocity/100);
+        }
+
+        if (event.name == "Note off") {
+            synth.triggerRelease(event.noteName);
+        }
+    } else {
+        if (event.name == "Set Tempo") {
+            Window.Player.setTempo(tempo)
+        }
+    }
+});
+
 const sineSynth = new Tone.PolySynth(Tone.Synth).toDestination();
     /*  synth.set({
         "volume": 0,
@@ -805,9 +835,16 @@ function tmp(){
 
 function sendGenerateRequest() {
     //get contents of grid
+    
     var notesToSend = getNumsFromGrid();            // Need to create a new function that puts the duration at the beginning of the note. For backend purposes. 
-    axios.post("http://127.0.0.1:5000", {name: "song", songTempo: tempo, notes: notesToSend}).then(function (response) {
-        console.log(response)
+
+    axios.post("http://127.0.0.1:5000/", {name: "song", songTempo: tempo, notes: notesToSend}, {responseType: "arraybuffer"}).then(function (response) {        
+    console.log("received response")
+    midi = response.data
+    Window.Player.loadArrayBuffer(midi).play()
+    // Window.Player.stop()
+    // Window.Player.setTempo(tempo)
+    // Window.Player.play()
     })
 }
 

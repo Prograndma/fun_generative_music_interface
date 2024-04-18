@@ -21,7 +21,7 @@ generator = MidiGenerator()
 @app.route("/", methods=["POST"])
 def home():
   a = json.loads(request.data)
-  print(a["notes"])
+  # print(a["notes"])
   midi = populate_midi(a["notes"], a["songTempo"])
   midi = generator.condition_on_existing(midi)
   try:
