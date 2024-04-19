@@ -22,8 +22,8 @@ class MidiGenerator():
         continuation = self.model.generate(prompt, max_new_tokens=512,
                                            num_beams=1,
                                            do_sample=True,
-                                           temperature=1.1,
-                                           top_k=75,
+                                           temperature=1.08,
+                                           top_k=30,
                                            top_p=0.9,
                                            pad_token_id=self.tokenizer['PAD_None'])
         midi_result = self.tokenizer(continuation.cpu())
